@@ -29,17 +29,6 @@ class HttpMethodTest extends TestCase
     }
 
     /**
-     * Test that each case has the correct string backing value.
-     *
-     * @return void
-     */
-    #[DataProvider('backingValuesProvider')]
-    public function testBackingValues(HttpMethod $case, string $expectedValue): void
-    {
-        static::assertSame($expectedValue, $case->value);
-    }
-
-    /**
      * Provide each HttpMethod case with its expected backing value.
      *
      * @return iterable<string, array{0: \SineMacula\Http\Enums\HttpMethod, 1: string}>
@@ -58,14 +47,16 @@ class HttpMethodTest extends TestCase
     }
 
     /**
-     * Test that isSafe returns the correct boolean for each case.
+     * Test that each case has the correct string backing value.
      *
+     * @param  \SineMacula\Http\Enums\HttpMethod  $case
+     * @param  string  $expectedValue
      * @return void
      */
-    #[DataProvider('safeMethodsProvider')]
-    public function testIsSafe(HttpMethod $case, bool $expected): void
+    #[DataProvider('backingValuesProvider')]
+    public function testBackingValues(HttpMethod $case, string $expectedValue): void
     {
-        static::assertSame($expected, $case->isSafe());
+        static::assertSame($expectedValue, $case->value);
     }
 
     /**
@@ -87,15 +78,16 @@ class HttpMethodTest extends TestCase
     }
 
     /**
-     * Test that isIdempotent returns the correct boolean for each
-     * case.
+     * Test that isSafe returns the correct boolean for each case.
      *
+     * @param  \SineMacula\Http\Enums\HttpMethod  $case
+     * @param  bool  $expected
      * @return void
      */
-    #[DataProvider('idempotentMethodsProvider')]
-    public function testIsIdempotent(HttpMethod $case, bool $expected): void
+    #[DataProvider('safeMethodsProvider')]
+    public function testIsSafe(HttpMethod $case, bool $expected): void
     {
-        static::assertSame($expected, $case->isIdempotent());
+        static::assertSame($expected, $case->isSafe());
     }
 
     /**
@@ -115,6 +107,20 @@ class HttpMethodTest extends TestCase
         yield 'Connect is not idempotent' => [HttpMethod::Connect, false];
         yield 'Options is idempotent' => [HttpMethod::Options, true];
         yield 'Trace is idempotent' => [HttpMethod::Trace, true];
+    }
+
+    /**
+     * Test that isIdempotent returns the correct boolean for each
+     * case.
+     *
+     * @param  \SineMacula\Http\Enums\HttpMethod  $case
+     * @param  bool  $expected
+     * @return void
+     */
+    #[DataProvider('idempotentMethodsProvider')]
+    public function testIsIdempotent(HttpMethod $case, bool $expected): void
+    {
+        static::assertSame($expected, $case->isIdempotent());
     }
 
     /**

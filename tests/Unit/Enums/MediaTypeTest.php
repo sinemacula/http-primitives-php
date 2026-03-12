@@ -29,19 +29,6 @@ class MediaTypeTest extends TestCase
     }
 
     /**
-     * Test that each case has the correct backing value.
-     *
-     * @param  \SineMacula\Http\Enums\MediaType  $case
-     * @param  string  $expectedValue
-     * @return void
-     */
-    #[DataProvider('backingValueProvider')]
-    public function testBackingValues(MediaType $case, string $expectedValue): void
-    {
-        static::assertSame($expectedValue, $case->value);
-    }
-
-    /**
      * Provide each media type case with its expected backing value.
      *
      * @return iterable<string, array{0: \SineMacula\Http\Enums\MediaType, 1: string}>
@@ -93,6 +80,31 @@ class MediaTypeTest extends TestCase
     }
 
     /**
+     * Test that each case has the correct backing value.
+     *
+     * @param  \SineMacula\Http\Enums\MediaType  $case
+     * @param  string  $expectedValue
+     * @return void
+     */
+    #[DataProvider('backingValueProvider')]
+    public function testBackingValues(MediaType $case, string $expectedValue): void
+    {
+        static::assertSame($expectedValue, $case->value);
+    }
+
+    /**
+     * Provide each media type case with its expected isApplication result.
+     *
+     * @return iterable<string, array{0: \SineMacula\Http\Enums\MediaType, 1: bool}>
+     */
+    public static function isApplicationProvider(): iterable
+    {
+        foreach (MediaType::cases() as $case) {
+            yield $case->name => [$case, str_starts_with($case->value, 'application/')];
+        }
+    }
+
+    /**
      * Test that isApplication() returns true only for application types.
      *
      * @param  \SineMacula\Http\Enums\MediaType  $case
@@ -106,14 +118,14 @@ class MediaTypeTest extends TestCase
     }
 
     /**
-     * Provide each media type case with its expected isApplication result.
+     * Provide each media type case with its expected isText result.
      *
      * @return iterable<string, array{0: \SineMacula\Http\Enums\MediaType, 1: bool}>
      */
-    public static function isApplicationProvider(): iterable
+    public static function isTextProvider(): iterable
     {
         foreach (MediaType::cases() as $case) {
-            yield $case->name => [$case, str_starts_with($case->value, 'application/')];
+            yield $case->name => [$case, str_starts_with($case->value, 'text/')];
         }
     }
 
@@ -131,14 +143,14 @@ class MediaTypeTest extends TestCase
     }
 
     /**
-     * Provide each media type case with its expected isText result.
+     * Provide each media type case with its expected isMultipart result.
      *
      * @return iterable<string, array{0: \SineMacula\Http\Enums\MediaType, 1: bool}>
      */
-    public static function isTextProvider(): iterable
+    public static function isMultipartProvider(): iterable
     {
         foreach (MediaType::cases() as $case) {
-            yield $case->name => [$case, str_starts_with($case->value, 'text/')];
+            yield $case->name => [$case, str_starts_with($case->value, 'multipart/')];
         }
     }
 
@@ -156,14 +168,14 @@ class MediaTypeTest extends TestCase
     }
 
     /**
-     * Provide each media type case with its expected isMultipart result.
+     * Provide each media type case with its expected isImage result.
      *
      * @return iterable<string, array{0: \SineMacula\Http\Enums\MediaType, 1: bool}>
      */
-    public static function isMultipartProvider(): iterable
+    public static function isImageProvider(): iterable
     {
         foreach (MediaType::cases() as $case) {
-            yield $case->name => [$case, str_starts_with($case->value, 'multipart/')];
+            yield $case->name => [$case, str_starts_with($case->value, 'image/')];
         }
     }
 
@@ -181,14 +193,14 @@ class MediaTypeTest extends TestCase
     }
 
     /**
-     * Provide each media type case with its expected isImage result.
+     * Provide each media type case with its expected isAudio result.
      *
      * @return iterable<string, array{0: \SineMacula\Http\Enums\MediaType, 1: bool}>
      */
-    public static function isImageProvider(): iterable
+    public static function isAudioProvider(): iterable
     {
         foreach (MediaType::cases() as $case) {
-            yield $case->name => [$case, str_starts_with($case->value, 'image/')];
+            yield $case->name => [$case, str_starts_with($case->value, 'audio/')];
         }
     }
 
@@ -206,14 +218,14 @@ class MediaTypeTest extends TestCase
     }
 
     /**
-     * Provide each media type case with its expected isAudio result.
+     * Provide each media type case with its expected isVideo result.
      *
      * @return iterable<string, array{0: \SineMacula\Http\Enums\MediaType, 1: bool}>
      */
-    public static function isAudioProvider(): iterable
+    public static function isVideoProvider(): iterable
     {
         foreach (MediaType::cases() as $case) {
-            yield $case->name => [$case, str_starts_with($case->value, 'audio/')];
+            yield $case->name => [$case, str_starts_with($case->value, 'video/')];
         }
     }
 
@@ -231,14 +243,14 @@ class MediaTypeTest extends TestCase
     }
 
     /**
-     * Provide each media type case with its expected isVideo result.
+     * Provide each media type case with its expected isFont result.
      *
      * @return iterable<string, array{0: \SineMacula\Http\Enums\MediaType, 1: bool}>
      */
-    public static function isVideoProvider(): iterable
+    public static function isFontProvider(): iterable
     {
         foreach (MediaType::cases() as $case) {
-            yield $case->name => [$case, str_starts_with($case->value, 'video/')];
+            yield $case->name => [$case, str_starts_with($case->value, 'font/')];
         }
     }
 
@@ -253,32 +265,6 @@ class MediaTypeTest extends TestCase
     public function testIsFont(MediaType $case, bool $expected): void
     {
         static::assertSame($expected, $case->isFont());
-    }
-
-    /**
-     * Provide each media type case with its expected isFont result.
-     *
-     * @return iterable<string, array{0: \SineMacula\Http\Enums\MediaType, 1: bool}>
-     */
-    public static function isFontProvider(): iterable
-    {
-        foreach (MediaType::cases() as $case) {
-            yield $case->name => [$case, str_starts_with($case->value, 'font/')];
-        }
-    }
-
-    /**
-     * Test that getExtension() returns the correct extension for each
-     * case.
-     *
-     * @param  \SineMacula\Http\Enums\MediaType  $case
-     * @param  string|null  $expectedExtension
-     * @return void
-     */
-    #[DataProvider('extensionProvider')]
-    public function testGetExtension(MediaType $case, ?string $expectedExtension): void
-    {
-        static::assertSame($expectedExtension, $case->getExtension());
     }
 
     /**
@@ -330,6 +316,20 @@ class MediaTypeTest extends TestCase
         yield 'FontWoff2' => [MediaType::FontWoff2, 'woff2'];
         yield 'FontTtf' => [MediaType::FontTtf, 'ttf'];
         yield 'FontOtf' => [MediaType::FontOtf, 'otf'];
+    }
+
+    /**
+     * Test that getExtension() returns the correct extension for each
+     * case.
+     *
+     * @param  \SineMacula\Http\Enums\MediaType  $case
+     * @param  string|null  $expectedExtension
+     * @return void
+     */
+    #[DataProvider('extensionProvider')]
+    public function testGetExtension(MediaType $case, ?string $expectedExtension): void
+    {
+        static::assertSame($expectedExtension, $case->getExtension());
     }
 
     /**

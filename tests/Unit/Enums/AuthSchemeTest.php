@@ -19,6 +19,8 @@ use SineMacula\Http\Enums\AuthScheme;
 class AuthSchemeTest extends TestCase
 {
     /**
+     * Test that AuthScheme has the expected number of cases.
+     *
      * @return void
      */
     public function testCaseCount(): void
@@ -27,6 +29,8 @@ class AuthSchemeTest extends TestCase
     }
 
     /**
+     * Provide each AuthScheme case with its expected backing value.
+     *
      * @return iterable<string, array{0: \SineMacula\Http\Enums\AuthScheme, 1: string}>
      */
     public static function backingValueProvider(): iterable
@@ -37,6 +41,8 @@ class AuthSchemeTest extends TestCase
     }
 
     /**
+     * Test that each case has the correct string backing value.
+     *
      * @param  \SineMacula\Http\Enums\AuthScheme  $case
      * @param  string  $expectedValue
      * @return void
@@ -48,6 +54,8 @@ class AuthSchemeTest extends TestCase
     }
 
     /**
+     * Test that from and tryFrom produce the expected round-trip results.
+     *
      * @return void
      */
     public function testFromValueRoundTrip(): void
@@ -58,6 +66,8 @@ class AuthSchemeTest extends TestCase
     }
 
     /**
+     * Test that tryFrom returns null for an unrecognised scheme value.
+     *
      * @return void
      */
     public function testTryFromReturnsNullForUnknownValue(): void

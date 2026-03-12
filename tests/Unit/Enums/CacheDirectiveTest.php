@@ -19,6 +19,8 @@ use SineMacula\Http\Enums\CacheDirective;
 class CacheDirectiveTest extends TestCase
 {
     /**
+     * Test that CacheDirective has the expected number of cases.
+     *
      * @return void
      */
     public function testCaseCount(): void
@@ -27,6 +29,8 @@ class CacheDirectiveTest extends TestCase
     }
 
     /**
+     * Provide each CacheDirective case with its expected backing value.
+     *
      * @return iterable<string, array{0: \SineMacula\Http\Enums\CacheDirective, 1: string}>
      */
     public static function backingValueProvider(): iterable
@@ -50,6 +54,8 @@ class CacheDirectiveTest extends TestCase
     }
 
     /**
+     * Test that each case has the correct string backing value.
+     *
      * @param  \SineMacula\Http\Enums\CacheDirective  $case
      * @param  string  $expectedValue
      * @return void
@@ -61,6 +67,8 @@ class CacheDirectiveTest extends TestCase
     }
 
     /**
+     * Provide each CacheDirective case with whether it is a request directive.
+     *
      * @return iterable<string, array{0: \SineMacula\Http\Enums\CacheDirective, 1: bool}>
      */
     public static function isRequestDirectiveProvider(): iterable
@@ -84,6 +92,8 @@ class CacheDirectiveTest extends TestCase
     }
 
     /**
+     * Test that isRequestDirective returns the correct boolean for each case.
+     *
      * @param  \SineMacula\Http\Enums\CacheDirective  $case
      * @param  bool  $expected
      * @return void
@@ -95,6 +105,8 @@ class CacheDirectiveTest extends TestCase
     }
 
     /**
+     * Provide each CacheDirective case with whether it is a response directive.
+     *
      * @return iterable<string, array{0: \SineMacula\Http\Enums\CacheDirective, 1: bool}>
      */
     public static function isResponseDirectiveProvider(): iterable
@@ -118,6 +130,8 @@ class CacheDirectiveTest extends TestCase
     }
 
     /**
+     * Test that isResponseDirective returns the correct boolean for each case.
+     *
      * @param  \SineMacula\Http\Enums\CacheDirective  $case
      * @param  bool  $expected
      * @return void
@@ -129,6 +143,8 @@ class CacheDirectiveTest extends TestCase
     }
 
     /**
+     * Test that tryFrom returns null for an unrecognised directive value.
+     *
      * @return void
      */
     public function testTryFromReturnsNullForUnknownValue(): void

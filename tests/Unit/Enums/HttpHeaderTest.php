@@ -19,6 +19,8 @@ use SineMacula\Http\Enums\HttpHeader;
 class HttpHeaderTest extends TestCase
 {
     /**
+     * Test that HttpHeader has the expected number of cases.
+     *
      * @return void
      */
     public function testCaseCount(): void
@@ -27,6 +29,8 @@ class HttpHeaderTest extends TestCase
     }
 
     /**
+     * Provide each HttpHeader case with its expected backing value.
+     *
      * @return iterable<string, array{0: \SineMacula\Http\Enums\HttpHeader, 1: string}>
      */
     public static function backingValueProvider(): iterable
@@ -94,6 +98,8 @@ class HttpHeaderTest extends TestCase
     }
 
     /**
+     * Test that each case has the correct string backing value.
+     *
      * @param  \SineMacula\Http\Enums\HttpHeader  $case
      * @param  string  $expectedValue
      * @return void
@@ -105,6 +111,8 @@ class HttpHeaderTest extends TestCase
     }
 
     /**
+     * Provide each HttpHeader case with whether it is a standard header.
+     *
      * @return iterable<string, array{0: \SineMacula\Http\Enums\HttpHeader, 1: bool}>
      */
     public static function isStandardProvider(): iterable
@@ -172,6 +180,8 @@ class HttpHeaderTest extends TestCase
     }
 
     /**
+     * Test that isStandard returns the correct boolean for each case.
+     *
      * @param  \SineMacula\Http\Enums\HttpHeader  $case
      * @param  bool  $expected
      * @return void
@@ -183,6 +193,8 @@ class HttpHeaderTest extends TestCase
     }
 
     /**
+     * Test that tryFrom returns null for an unrecognised header value.
+     *
      * @return void
      */
     public function testTryFromReturnsNullForUnknownValue(): void

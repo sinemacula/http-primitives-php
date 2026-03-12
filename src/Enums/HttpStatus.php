@@ -47,10 +47,14 @@ enum HttpStatus: int
     case SeeOther         = 303;
     case NotModified      = 304;
 
-    /** @deprecated */
+    /**
+     * @deprecated
+     */
     case UseProxy = 305;
 
-    /** @deprecated */
+    /**
+     * @deprecated
+     */
     case Unused = 306;
 
     case TemporaryRedirect = 307;
@@ -106,7 +110,9 @@ enum HttpStatus: int
     case InsufficientStorage     = 507;
     case LoopDetected            = 508;
 
-    /** @deprecated */
+    /**
+     * @deprecated
+     */
     case NotExtended = 510;
 
     case NetworkAuthenticationRequired = 511;
