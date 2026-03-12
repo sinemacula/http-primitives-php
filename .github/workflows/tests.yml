@@ -1,0 +1,88 @@
+# ==============================================================================
+# PIPELINE
+# ==============================================================================
+name: Tests
+
+# ==============================================================================
+# TRIGGERS
+# ==============================================================================
+on:
+    push:
+        branches:
+            - '**'
+
+# ==============================================================================
+# PERMISSIONS
+# ==============================================================================
+permissions:
+    contents: read
+
+# ==============================================================================
+# DEFAULTS
+# ==============================================================================
+defaults:
+    run:
+        shell: bash
+
+jobs:
+
+    # ==========================================================================
+    # JOB: TESTS
+    # ==========================================================================
+    tests:
+        name: Test / PHP ${{ matrix.php }}
+        runs-on: ubuntu-latest
+
+        strategy:
+            fail-fast: true
+            matrix:
+                php: [ 8.3 ]
+
+        concurrency:
+            group: tests-${{ github.workflow }}-${{ github.ref }}
+            cancel-in-progress: true
+
+        steps:
+            -   name: Checkout
+                uses: actions/checkout@v4
+
+            -   name: Setup PHP
+                uses: shivammathur/setup-php@v2
+                with:
+                    php-version: ${{ matrix.php }}
+                    extensions: dom
+                    coverage: pcov
+                    tools: composer
+
+            -   name: Cache Composer cache
+                uses: actions/cache@v4
+                with:
+                    path: ~/.composer/cache
+                    key: composer-cache-${{ runner.os }}-${{ matrix.php }}-${{ hashFiles('**/composer.lock') }}
+                    restore-keys: composer-cache-${{ runner.os }}-
+                    
+            -   name: Cache vendor
+                uses: actions/cache@v4
+                with:
+                    path: vendor
+                    key: vendor-${{ runner.os }}-${{ matrix.php }}-${{ hashFiles('**/composer.lock') }}
+                    restore-keys: |
+                        vendor-${{ runner.os }}-${{ matrix.php }}-
+
+            -   name: Install Composer dependencies
+                run: composer install --prefer-dist --no-interaction --no-progress
+
+            -   name: PHPUnit
+                if: ${{ !(github.event_name == 'push' && github.ref == 'refs/heads/master') }}
+                run: composer test
+
+            -   name: PHPUnit + Coverage
+                if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
+                run: composer test-coverage
+
+            -   name: Publish code coverage
+                if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
+                uses: qltysh/qlty-action/coverage@v1
+                with:
+                    token: ${{ secrets.QLTY_COVERAGE_TOKEN }}
+                    files: clover.xml
