@@ -23,6 +23,8 @@ class HttpStatusSymfonyParityTest extends TestCase
      * Every Symfony Response::HTTP_* constant must have a
      * matching HttpStatus case with the same integer value.
      *
+     * @SuppressWarnings("php:S3011")
+     *
      * @return void
      */
     public function testEverySymfonyHttpConstantHasMatchingHttpStatusCase(): void
@@ -56,6 +58,8 @@ class HttpStatusSymfonyParityTest extends TestCase
     /**
      * Every HttpStatus case must have a matching Symfony
      * Response::HTTP_* constant with the same integer value.
+     *
+     * @SuppressWarnings("php:S3011")
      *
      * @return void
      */
