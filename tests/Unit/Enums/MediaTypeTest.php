@@ -33,7 +33,7 @@ class MediaTypeTest extends TestCase
         yield 'ApplicationOctetStream' => [MediaType::ApplicationOctetStream, 'application/octet-stream'];
         yield 'ApplicationFormUrlencoded' => [
             MediaType::ApplicationFormUrlencoded,
-            'application/x-www-form-urlencoded'
+            'application/x-www-form-urlencoded',
         ];
         yield 'ApplicationJavascript' => [MediaType::ApplicationJavascript, 'application/javascript'];
         yield 'ApplicationLdJson' => [MediaType::ApplicationLdJson, 'application/ld+json'];

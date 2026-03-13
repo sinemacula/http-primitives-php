@@ -1,14 +1,7 @@
 # Project Overview
 
-`sinemacula/http-primitives` is a standalone, framework-agnostic PHP 8.3+ package providing typed backed enums for HTTP
-protocol primitives. It has zero runtime dependencies.
-
-The package provides enums for: `HttpStatus` (int-backed, all standard 1xx–5xx codes), `HttpMethod` (string-backed),
-`MediaType` (common MIME types), `HttpHeader` (standard and common non-standard headers), `CacheDirective` (
-Cache-Control values), and `AuthScheme` (authentication schemes). Each enum includes relevant helper methods.
-
-Namespace: `SineMacula\Http\Enums\`. Symfony HttpFoundation is a dev-only dependency used in tests to verify
-`HttpStatus` stays in sync with Symfony's `Response::HTTP_*` constants.
+Standalone PHP 8.3+ package providing typed backed enums for HTTP protocol primitives. Zero runtime dependencies.
+Namespace: `SineMacula\Http\Enums\`.
 
 ## Commands
 

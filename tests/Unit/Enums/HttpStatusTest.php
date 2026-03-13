@@ -182,7 +182,7 @@ class HttpStatusTest extends TestCase
         yield 'Accepted (202)' => [HttpStatus::Accepted, 'Accepted'];
         yield 'NonAuthoritativeInformation (203)' => [
             HttpStatus::NonAuthoritativeInformation,
-            'Non-Authoritative Information'
+            'Non-Authoritative Information',
         ];
         yield 'NoContent (204)' => [HttpStatus::NoContent, 'No Content'];
         yield 'ResetContent (205)' => [HttpStatus::ResetContent, 'Reset Content'];
@@ -208,7 +208,7 @@ class HttpStatusTest extends TestCase
         yield 'NotAcceptable (406)' => [HttpStatus::NotAcceptable, 'Not Acceptable'];
         yield 'ProxyAuthenticationRequired (407)' => [
             HttpStatus::ProxyAuthenticationRequired,
-            'Proxy Authentication Required'
+            'Proxy Authentication Required',
         ];
         yield 'RequestTimeout (408)' => [HttpStatus::RequestTimeout, 'Request Timeout'];
         yield 'Conflict (409)' => [HttpStatus::Conflict, 'Conflict'];
@@ -231,11 +231,11 @@ class HttpStatusTest extends TestCase
         yield 'TooManyRequests (429)' => [HttpStatus::TooManyRequests, 'Too Many Requests'];
         yield 'RequestHeaderFieldsTooLarge (431)' => [
             HttpStatus::RequestHeaderFieldsTooLarge,
-            'Request Header Fields Too Large'
+            'Request Header Fields Too Large',
         ];
         yield 'UnavailableForLegalReasons (451)' => [
             HttpStatus::UnavailableForLegalReasons,
-            'Unavailable For Legal Reasons'
+            'Unavailable For Legal Reasons',
         ];
         yield 'InternalServerError (500)' => [HttpStatus::InternalServerError, 'Internal Server Error'];
         yield 'NotImplemented (501)' => [HttpStatus::NotImplemented, 'Not Implemented'];
@@ -249,7 +249,7 @@ class HttpStatusTest extends TestCase
         yield 'NotExtended (510)' => [HttpStatus::NotExtended, 'Not Extended'];
         yield 'NetworkAuthenticationRequired (511)' => [
             HttpStatus::NetworkAuthenticationRequired,
-            'Network Authentication Required'
+            'Network Authentication Required',
         ];
     }
 
