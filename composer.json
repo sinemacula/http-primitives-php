@@ -1,5 +1,5 @@
 {
-    "name": "sinemacula/http-primitives",
+    "name": "sinemacula/http-primitives-php",
     "type": "library",
     "description": "Standalone, framework-agnostic PHP 8.3+ package providing typed backed enums for HTTP protocol primitives with zero runtime dependencies.",
     "keywords": [

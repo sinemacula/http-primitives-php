@@ -1,10 +1,10 @@
 # HTTP Primitives
 
-[![Latest Stable Version](https://img.shields.io/packagist/v/sinemacula/http-primitives.svg)](https://packagist.org/packages/sinemacula/http-primitives)
-[![Build Status](https://github.com/sinemacula/http-primitives/actions/workflows/tests.yml/badge.svg?branch=master)](https://github.com/sinemacula/http-primitives/actions/workflows/tests.yml)
-[![Maintainability](https://qlty.sh/gh/sinemacula/projects/http-primitives/maintainability.svg)](https://qlty.sh/gh/sinemacula/projects/http-primitives)
-[![Code Coverage](https://qlty.sh/gh/sinemacula/projects/http-primitives/coverage.svg)](https://qlty.sh/gh/sinemacula/projects/http-primitives)
-[![Total Downloads](https://img.shields.io/packagist/dt/sinemacula/http-primitives.svg)](https://packagist.org/packages/sinemacula/http-primitives)
+[![Latest Stable Version](https://img.shields.io/packagist/v/sinemacula/http-primitives-php.svg)](https://packagist.org/packages/sinemacula/http-primitives-php)
+[![Build Status](https://github.com/sinemacula/http-primitives-php-php/actions/workflows/tests.yml/badge.svg?branch=master)](https://github.com/sinemacula/http-primitives-php-php/actions/workflows/tests.yml)
+[![Maintainability](https://qlty.sh/gh/sinemacula/projects/http-primitives-php/maintainability.svg)](https://qlty.sh/gh/sinemacula/projects/http-primitives-php)
+[![Code Coverage](https://qlty.sh/gh/sinemacula/projects/http-primitives-php/coverage.svg)](https://qlty.sh/gh/sinemacula/projects/http-primitives-php)
+[![Total Downloads](https://img.shields.io/packagist/dt/sinemacula/http-primitives-php.svg)](https://packagist.org/packages/sinemacula/http-primitives-php)
 
 Standalone, framework-agnostic PHP 8.3+ package providing typed backed enums for HTTP protocol primitives. Zero runtime
 dependencies.
@@ -37,7 +37,7 @@ Each enum includes contextual helper methods:
 ## Installation
 
 ```bash
-composer require sinemacula/http-primitives
+composer require sinemacula/http-primitives-php
 ```
 
 ## Usage
