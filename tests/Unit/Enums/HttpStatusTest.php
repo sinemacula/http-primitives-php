@@ -19,16 +19,6 @@ use SineMacula\Http\Enums\HttpStatus;
 class HttpStatusTest extends TestCase
 {
     /**
-     * Test that the enum contains exactly 63 cases.
-     *
-     * @return void
-     */
-    public function testCaseCount(): void
-    {
-        static::assertCount(63, HttpStatus::cases());
-    }
-
-    /**
      * Provide each HttpStatus case with its expected backing value.
      *
      * @return iterable<string, array{0: \SineMacula\Http\Enums\HttpStatus, 1: int}>
@@ -101,21 +91,7 @@ class HttpStatusTest extends TestCase
     }
 
     /**
-     * Test that each case has the correct integer backing value.
-     *
-     * @param  \SineMacula\Http\Enums\HttpStatus  $case
-     * @param  int  $expectedValue
-     * @return void
-     */
-    #[DataProvider('backingValuesProvider')]
-    public function testBackingValues(HttpStatus $case, int $expectedValue): void
-    {
-        static::assertSame($expectedValue, $case->value);
-    }
-
-    /**
-     * Provide each HttpStatus case with its expected informational
-     * status.
+     * Provide each HttpStatus case with its expected informational status.
      *
      * @return iterable<string, array{0: \SineMacula\Http\Enums\HttpStatus, 1: bool}>
      */
@@ -127,20 +103,6 @@ class HttpStatusTest extends TestCase
                 $case->value >= 100 && $case->value < 200,
             ];
         }
-    }
-
-    /**
-     * Test that isInformational returns the correct boolean for each
-     * case.
-     *
-     * @param  \SineMacula\Http\Enums\HttpStatus  $case
-     * @param  bool  $expected
-     * @return void
-     */
-    #[DataProvider('informationalProvider')]
-    public function testIsInformational(HttpStatus $case, bool $expected): void
-    {
-        static::assertSame($expected, $case->isInformational());
     }
 
     /**
@@ -159,21 +121,7 @@ class HttpStatusTest extends TestCase
     }
 
     /**
-     * Test that isSuccess returns the correct boolean for each case.
-     *
-     * @param  \SineMacula\Http\Enums\HttpStatus  $case
-     * @param  bool  $expected
-     * @return void
-     */
-    #[DataProvider('successProvider')]
-    public function testIsSuccess(HttpStatus $case, bool $expected): void
-    {
-        static::assertSame($expected, $case->isSuccess());
-    }
-
-    /**
-     * Provide each HttpStatus case with its expected redirection
-     * status.
+     * Provide each HttpStatus case with its expected redirection status.
      *
      * @return iterable<string, array{0: \SineMacula\Http\Enums\HttpStatus, 1: bool}>
      */
@@ -185,20 +133,6 @@ class HttpStatusTest extends TestCase
                 $case->value >= 300 && $case->value < 400,
             ];
         }
-    }
-
-    /**
-     * Test that isRedirection returns the correct boolean for each
-     * case.
-     *
-     * @param  \SineMacula\Http\Enums\HttpStatus  $case
-     * @param  bool  $expected
-     * @return void
-     */
-    #[DataProvider('redirectionProvider')]
-    public function testIsRedirection(HttpStatus $case, bool $expected): void
-    {
-        static::assertSame($expected, $case->isRedirection());
     }
 
     /**
@@ -218,22 +152,7 @@ class HttpStatusTest extends TestCase
     }
 
     /**
-     * Test that isClientError returns the correct boolean for each
-     * case.
-     *
-     * @param  \SineMacula\Http\Enums\HttpStatus  $case
-     * @param  bool  $expected
-     * @return void
-     */
-    #[DataProvider('clientErrorProvider')]
-    public function testIsClientError(HttpStatus $case, bool $expected): void
-    {
-        static::assertSame($expected, $case->isClientError());
-    }
-
-    /**
-     * Provide each HttpStatus case with its expected server error
-     * status.
+     * Provide each HttpStatus case with its expected server error status.
      *
      * @return iterable<string, array{0: \SineMacula\Http\Enums\HttpStatus, 1: bool}>
      */
@@ -245,20 +164,6 @@ class HttpStatusTest extends TestCase
                 $case->value >= 500 && $case->value < 600,
             ];
         }
-    }
-
-    /**
-     * Test that isServerError returns the correct boolean for each
-     * case.
-     *
-     * @param  \SineMacula\Http\Enums\HttpStatus  $case
-     * @param  bool  $expected
-     * @return void
-     */
-    #[DataProvider('serverErrorProvider')]
-    public function testIsServerError(HttpStatus $case, bool $expected): void
-    {
-        static::assertSame($expected, $case->isServerError());
     }
 
     /**
@@ -275,7 +180,10 @@ class HttpStatusTest extends TestCase
         yield 'Ok (200)' => [HttpStatus::Ok, 'OK'];
         yield 'Created (201)' => [HttpStatus::Created, 'Created'];
         yield 'Accepted (202)' => [HttpStatus::Accepted, 'Accepted'];
-        yield 'NonAuthoritativeInformation (203)' => [HttpStatus::NonAuthoritativeInformation, 'Non-Authoritative Information'];
+        yield 'NonAuthoritativeInformation (203)' => [
+            HttpStatus::NonAuthoritativeInformation,
+            'Non-Authoritative Information'
+        ];
         yield 'NoContent (204)' => [HttpStatus::NoContent, 'No Content'];
         yield 'ResetContent (205)' => [HttpStatus::ResetContent, 'Reset Content'];
         yield 'PartialContent (206)' => [HttpStatus::PartialContent, 'Partial Content'];
@@ -298,7 +206,10 @@ class HttpStatusTest extends TestCase
         yield 'NotFound (404)' => [HttpStatus::NotFound, 'Not Found'];
         yield 'MethodNotAllowed (405)' => [HttpStatus::MethodNotAllowed, 'Method Not Allowed'];
         yield 'NotAcceptable (406)' => [HttpStatus::NotAcceptable, 'Not Acceptable'];
-        yield 'ProxyAuthenticationRequired (407)' => [HttpStatus::ProxyAuthenticationRequired, 'Proxy Authentication Required'];
+        yield 'ProxyAuthenticationRequired (407)' => [
+            HttpStatus::ProxyAuthenticationRequired,
+            'Proxy Authentication Required'
+        ];
         yield 'RequestTimeout (408)' => [HttpStatus::RequestTimeout, 'Request Timeout'];
         yield 'Conflict (409)' => [HttpStatus::Conflict, 'Conflict'];
         yield 'Gone (410)' => [HttpStatus::Gone, 'Gone'];
@@ -318,8 +229,14 @@ class HttpStatusTest extends TestCase
         yield 'UpgradeRequired (426)' => [HttpStatus::UpgradeRequired, 'Upgrade Required'];
         yield 'PreconditionRequired (428)' => [HttpStatus::PreconditionRequired, 'Precondition Required'];
         yield 'TooManyRequests (429)' => [HttpStatus::TooManyRequests, 'Too Many Requests'];
-        yield 'RequestHeaderFieldsTooLarge (431)' => [HttpStatus::RequestHeaderFieldsTooLarge, 'Request Header Fields Too Large'];
-        yield 'UnavailableForLegalReasons (451)' => [HttpStatus::UnavailableForLegalReasons, 'Unavailable For Legal Reasons'];
+        yield 'RequestHeaderFieldsTooLarge (431)' => [
+            HttpStatus::RequestHeaderFieldsTooLarge,
+            'Request Header Fields Too Large'
+        ];
+        yield 'UnavailableForLegalReasons (451)' => [
+            HttpStatus::UnavailableForLegalReasons,
+            'Unavailable For Legal Reasons'
+        ];
         yield 'InternalServerError (500)' => [HttpStatus::InternalServerError, 'Internal Server Error'];
         yield 'NotImplemented (501)' => [HttpStatus::NotImplemented, 'Not Implemented'];
         yield 'BadGateway (502)' => [HttpStatus::BadGateway, 'Bad Gateway'];
@@ -330,12 +247,102 @@ class HttpStatusTest extends TestCase
         yield 'InsufficientStorage (507)' => [HttpStatus::InsufficientStorage, 'Insufficient Storage'];
         yield 'LoopDetected (508)' => [HttpStatus::LoopDetected, 'Loop Detected'];
         yield 'NotExtended (510)' => [HttpStatus::NotExtended, 'Not Extended'];
-        yield 'NetworkAuthenticationRequired (511)' => [HttpStatus::NetworkAuthenticationRequired, 'Network Authentication Required'];
+        yield 'NetworkAuthenticationRequired (511)' => [
+            HttpStatus::NetworkAuthenticationRequired,
+            'Network Authentication Required'
+        ];
     }
 
     /**
-     * Test that getReasonPhrase returns the correct phrase for each
-     * case.
+     * Test that the enum contains exactly 63 cases.
+     *
+     * @return void
+     */
+    public function testCaseCount(): void
+    {
+        static::assertCount(63, HttpStatus::cases());
+    }
+
+    /**
+     * Test that each case has the correct integer backing value.
+     *
+     * @param  \SineMacula\Http\Enums\HttpStatus  $case
+     * @param  int  $expectedValue
+     * @return void
+     */
+    #[DataProvider('backingValuesProvider')]
+    public function testBackingValues(HttpStatus $case, int $expectedValue): void
+    {
+        static::assertSame($expectedValue, $case->value);
+    }
+
+    /**
+     * Test that isInformational returns the correct boolean for each case.
+     *
+     * @param  \SineMacula\Http\Enums\HttpStatus  $case
+     * @param  bool  $expected
+     * @return void
+     */
+    #[DataProvider('informationalProvider')]
+    public function testIsInformational(HttpStatus $case, bool $expected): void
+    {
+        static::assertSame($expected, $case->isInformational());
+    }
+
+    /**
+     * Test that isSuccess returns the correct boolean for each case.
+     *
+     * @param  \SineMacula\Http\Enums\HttpStatus  $case
+     * @param  bool  $expected
+     * @return void
+     */
+    #[DataProvider('successProvider')]
+    public function testIsSuccess(HttpStatus $case, bool $expected): void
+    {
+        static::assertSame($expected, $case->isSuccess());
+    }
+
+    /**
+     * Test that isRedirection returns the correct boolean for each case.
+     *
+     * @param  \SineMacula\Http\Enums\HttpStatus  $case
+     * @param  bool  $expected
+     * @return void
+     */
+    #[DataProvider('redirectionProvider')]
+    public function testIsRedirection(HttpStatus $case, bool $expected): void
+    {
+        static::assertSame($expected, $case->isRedirection());
+    }
+
+    /**
+     * Test that isClientError returns the correct boolean for each case.
+     *
+     * @param  \SineMacula\Http\Enums\HttpStatus  $case
+     * @param  bool  $expected
+     * @return void
+     */
+    #[DataProvider('clientErrorProvider')]
+    public function testIsClientError(HttpStatus $case, bool $expected): void
+    {
+        static::assertSame($expected, $case->isClientError());
+    }
+
+    /**
+     * Test that isServerError returns the correct boolean for each case.
+     *
+     * @param  \SineMacula\Http\Enums\HttpStatus  $case
+     * @param  bool  $expected
+     * @return void
+     */
+    #[DataProvider('serverErrorProvider')]
+    public function testIsServerError(HttpStatus $case, bool $expected): void
+    {
+        static::assertSame($expected, $case->isServerError());
+    }
+
+    /**
+     * Test that getReasonPhrase returns the correct phrase for each case.
      *
      * @param  \SineMacula\Http\Enums\HttpStatus  $case
      * @param  string  $expectedPhrase

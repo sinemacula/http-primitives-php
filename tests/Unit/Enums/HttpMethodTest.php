@@ -19,16 +19,6 @@ use SineMacula\Http\Enums\HttpMethod;
 class HttpMethodTest extends TestCase
 {
     /**
-     * Test that the enum contains exactly 9 cases.
-     *
-     * @return void
-     */
-    public function testCaseCount(): void
-    {
-        static::assertCount(9, HttpMethod::cases());
-    }
-
-    /**
      * Provide each HttpMethod case with its expected backing value.
      *
      * @return iterable<string, array{0: \SineMacula\Http\Enums\HttpMethod, 1: string}>
@@ -47,19 +37,6 @@ class HttpMethodTest extends TestCase
     }
 
     /**
-     * Test that each case has the correct string backing value.
-     *
-     * @param  \SineMacula\Http\Enums\HttpMethod  $case
-     * @param  string  $expectedValue
-     * @return void
-     */
-    #[DataProvider('backingValuesProvider')]
-    public function testBackingValues(HttpMethod $case, string $expectedValue): void
-    {
-        static::assertSame($expectedValue, $case->value);
-    }
-
-    /**
      * Provide each HttpMethod case with its expected safety status.
      *
      * @return iterable<string, array{0: \SineMacula\Http\Enums\HttpMethod, 1: bool}>
@@ -75,19 +52,6 @@ class HttpMethodTest extends TestCase
         yield 'Connect is not safe' => [HttpMethod::Connect, false];
         yield 'Options is safe' => [HttpMethod::Options, true];
         yield 'Trace is safe' => [HttpMethod::Trace, true];
-    }
-
-    /**
-     * Test that isSafe returns the correct boolean for each case.
-     *
-     * @param  \SineMacula\Http\Enums\HttpMethod  $case
-     * @param  bool  $expected
-     * @return void
-     */
-    #[DataProvider('safeMethodsProvider')]
-    public function testIsSafe(HttpMethod $case, bool $expected): void
-    {
-        static::assertSame($expected, $case->isSafe());
     }
 
     /**
@@ -110,8 +74,43 @@ class HttpMethodTest extends TestCase
     }
 
     /**
-     * Test that isIdempotent returns the correct boolean for each
-     * case.
+     * Test that the enum contains exactly 9 cases.
+     *
+     * @return void
+     */
+    public function testCaseCount(): void
+    {
+        static::assertCount(9, HttpMethod::cases());
+    }
+
+    /**
+     * Test that each case has the correct string backing value.
+     *
+     * @param  \SineMacula\Http\Enums\HttpMethod  $case
+     * @param  string  $expectedValue
+     * @return void
+     */
+    #[DataProvider('backingValuesProvider')]
+    public function testBackingValues(HttpMethod $case, string $expectedValue): void
+    {
+        static::assertSame($expectedValue, $case->value);
+    }
+
+    /**
+     * Test that isSafe returns the correct boolean for each case.
+     *
+     * @param  \SineMacula\Http\Enums\HttpMethod  $case
+     * @param  bool  $expected
+     * @return void
+     */
+    #[DataProvider('safeMethodsProvider')]
+    public function testIsSafe(HttpMethod $case, bool $expected): void
+    {
+        static::assertSame($expected, $case->isSafe());
+    }
+
+    /**
+     * Test that isIdempotent returns the correct boolean for each case.
      *
      * @param  \SineMacula\Http\Enums\HttpMethod  $case
      * @param  bool  $expected

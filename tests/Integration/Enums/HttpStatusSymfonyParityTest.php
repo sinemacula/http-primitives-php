@@ -8,8 +8,8 @@ use SineMacula\Http\Enums\HttpStatus;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Verify parity between HttpStatus enum values and
- * Symfony HttpFoundation Response constants.
+ * Verify parity between HttpStatus enum values and Symfony HttpFoundation
+ * Response constants.
  *
  * @internal
  *
@@ -20,8 +20,8 @@ use Symfony\Component\HttpFoundation\Response;
 class HttpStatusSymfonyParityTest extends TestCase
 {
     /**
-     * Every Symfony Response::HTTP_* constant must have a
-     * matching HttpStatus case with the same integer value.
+     * Every Symfony Response::HTTP_* constant must have a matching HttpStatus
+     * case with the same integer value.
      *
      * @SuppressWarnings("php:S3011")
      *
@@ -56,8 +56,8 @@ class HttpStatusSymfonyParityTest extends TestCase
     }
 
     /**
-     * Every HttpStatus case must have a matching Symfony
-     * Response::HTTP_* constant with the same integer value.
+     * Every HttpStatus case must have a matching Symfony Response::HTTP_*
+     * constant with the same integer value.
      *
      * @SuppressWarnings("php:S3011")
      *
@@ -83,7 +83,6 @@ class HttpStatusSymfonyParityTest extends TestCase
         }
 
         foreach (HttpStatus::cases() as $case) {
-
             static::assertArrayHasKey(
                 $case->value,
                 $symfonyValues,
