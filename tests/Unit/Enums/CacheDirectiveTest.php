@@ -87,7 +87,7 @@ class CacheDirectiveTest extends TestCase
         yield 'Public is not request directive' => [CacheDirective::Public, false];
         yield 'SMaxage is not request directive' => [CacheDirective::SMaxage, false];
         yield 'StaleIfError is request directive' => [CacheDirective::StaleIfError, true];
-        yield 'StaleWhileRevalidate is request directive' => [CacheDirective::StaleWhileRevalidate, true];
+        yield 'StaleWhileRevalidate is not request directive' => [CacheDirective::StaleWhileRevalidate, false];
         yield 'Immutable is not request directive' => [CacheDirective::Immutable, false];
     }
 

@@ -113,9 +113,8 @@ enum HttpHeader: string
             self::XForwardedHost,
             self::XForwardedProto,
             self::XCorrelationId,
-            self::XContentTypeOptions,
-            self::XFrameOptions => false,
-            default             => true,
+            self::XContentTypeOptions => false,
+            default                   => true,
         };
     }
 }

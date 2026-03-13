@@ -48,9 +48,8 @@ enum CacheDirective: string
             self::NoStore,
             self::NoTransform,
             self::OnlyIfCached,
-            self::StaleIfError,
-            self::StaleWhileRevalidate => true,
-            default                    => false,
+            self::StaleIfError => true,
+            default            => false,
         };
     }
 

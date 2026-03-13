@@ -171,7 +171,7 @@ class HttpHeaderTest extends TestCase
         yield 'StrictTransportSecurity is standard' => [HttpHeader::StrictTransportSecurity, true];
         yield 'ContentSecurityPolicy is standard' => [HttpHeader::ContentSecurityPolicy, true];
         yield 'XContentTypeOptions is non-standard' => [HttpHeader::XContentTypeOptions, false];
-        yield 'XFrameOptions is non-standard' => [HttpHeader::XFrameOptions, false];
+        yield 'XFrameOptions is standard' => [HttpHeader::XFrameOptions, true];
         yield 'XRequestId is non-standard' => [HttpHeader::XRequestId, false];
         yield 'XForwardedFor is non-standard' => [HttpHeader::XForwardedFor, false];
         yield 'XForwardedHost is non-standard' => [HttpHeader::XForwardedHost, false];
