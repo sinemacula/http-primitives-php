@@ -49,6 +49,7 @@ class MediaTypeTest extends TestCase
         yield 'TextMarkdown' => [MediaType::TextMarkdown, 'text/markdown'];
         yield 'TextCalendar' => [MediaType::TextCalendar, 'text/calendar'];
         yield 'TextJavascript' => [MediaType::TextJavascript, 'text/javascript'];
+        yield 'TextEventStream' => [MediaType::TextEventStream, 'text/event-stream'];
         yield 'MultipartFormData' => [MediaType::MultipartFormData, 'multipart/form-data'];
         yield 'MultipartByteRanges' => [MediaType::MultipartByteRanges, 'multipart/byteranges'];
         yield 'MultipartMixed' => [MediaType::MultipartMixed, 'multipart/mixed'];
@@ -184,6 +185,7 @@ class MediaTypeTest extends TestCase
         yield 'TextMarkdown' => [MediaType::TextMarkdown, 'md'];
         yield 'TextCalendar' => [MediaType::TextCalendar, 'ics'];
         yield 'TextJavascript' => [MediaType::TextJavascript, 'js'];
+        yield 'TextEventStream' => [MediaType::TextEventStream, null];
         yield 'MultipartFormData' => [MediaType::MultipartFormData, null];
         yield 'MultipartByteRanges' => [MediaType::MultipartByteRanges, null];
         yield 'MultipartMixed' => [MediaType::MultipartMixed, null];
@@ -214,7 +216,7 @@ class MediaTypeTest extends TestCase
      */
     public function testCaseCount(): void
     {
-        static::assertCount(42, MediaType::cases());
+        static::assertCount(43, MediaType::cases());
     }
 
     /**

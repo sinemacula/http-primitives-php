@@ -93,6 +93,7 @@ enum HttpHeader: string
     case XForwardedHost  = 'X-Forwarded-Host';
     case XForwardedProto = 'X-Forwarded-Proto';
     case XCorrelationId  = 'X-Correlation-ID';
+    case XAccelBuffering = 'X-Accel-Buffering';
 
     /*
     |---------------------------------------------------------------------------
@@ -113,6 +114,7 @@ enum HttpHeader: string
             self::XForwardedHost,
             self::XForwardedProto,
             self::XCorrelationId,
+            self::XAccelBuffering,
             self::XContentTypeOptions => false,
             default                   => true,
         };
