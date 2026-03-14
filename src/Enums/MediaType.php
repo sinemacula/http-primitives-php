@@ -34,14 +34,15 @@ enum MediaType: string
     | Text types
     |---------------------------------------------------------------------------
     */
-    case TextPlain      = 'text/plain';
-    case TextHtml       = 'text/html';
-    case TextCss        = 'text/css';
-    case TextCsv        = 'text/csv';
-    case TextXml        = 'text/xml';
-    case TextMarkdown   = 'text/markdown';
-    case TextCalendar   = 'text/calendar';
-    case TextJavascript = 'text/javascript';
+    case TextPlain       = 'text/plain';
+    case TextHtml        = 'text/html';
+    case TextCss         = 'text/css';
+    case TextCsv         = 'text/csv';
+    case TextXml         = 'text/xml';
+    case TextMarkdown    = 'text/markdown';
+    case TextCalendar    = 'text/calendar';
+    case TextJavascript  = 'text/javascript';
+    case TextEventStream = 'text/event-stream';
 
     /*
     |---------------------------------------------------------------------------
@@ -199,6 +200,7 @@ enum MediaType: string
             self::TextMarkdown              => 'md',
             self::TextCalendar              => 'ics',
             self::TextJavascript            => 'js',
+            self::TextEventStream           => null,
             self::MultipartFormData         => null,
             self::MultipartByteRanges       => null,
             self::MultipartMixed            => null,

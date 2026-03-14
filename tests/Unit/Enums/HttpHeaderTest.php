@@ -25,7 +25,7 @@ class HttpHeaderTest extends TestCase
      */
     public function testCaseCount(): void
     {
-        static::assertCount(60, HttpHeader::cases());
+        static::assertCount(61, HttpHeader::cases());
     }
 
     /**
@@ -95,6 +95,7 @@ class HttpHeaderTest extends TestCase
         yield 'X-Forwarded-Host' => [HttpHeader::XForwardedHost, 'X-Forwarded-Host'];
         yield 'X-Forwarded-Proto' => [HttpHeader::XForwardedProto, 'X-Forwarded-Proto'];
         yield 'X-Correlation-ID' => [HttpHeader::XCorrelationId, 'X-Correlation-ID'];
+        yield 'X-Accel-Buffering' => [HttpHeader::XAccelBuffering, 'X-Accel-Buffering'];
     }
 
     /**
@@ -177,6 +178,7 @@ class HttpHeaderTest extends TestCase
         yield 'XForwardedHost is non-standard' => [HttpHeader::XForwardedHost, false];
         yield 'XForwardedProto is non-standard' => [HttpHeader::XForwardedProto, false];
         yield 'XCorrelationId is non-standard' => [HttpHeader::XCorrelationId, false];
+        yield 'XAccelBuffering is non-standard' => [HttpHeader::XAccelBuffering, false];
     }
 
     /**
