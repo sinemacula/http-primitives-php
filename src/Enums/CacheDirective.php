@@ -10,22 +10,22 @@ namespace SineMacula\Http\Enums;
  */
 enum CacheDirective: string
 {
-    case MaxAge               = 'max-age';
-    case MaxStale             = 'max-stale';
-    case MinFresh             = 'min-fresh';
-    case MustRevalidate       = 'must-revalidate';
-    case MustUnderstand       = 'must-understand';
-    case NoCache              = 'no-cache';
-    case NoStore              = 'no-store';
-    case NoTransform          = 'no-transform';
-    case OnlyIfCached         = 'only-if-cached';
-    case Private              = 'private';
-    case ProxyRevalidate      = 'proxy-revalidate';
-    case Public               = 'public';
-    case SMaxage              = 's-maxage';
-    case StaleIfError         = 'stale-if-error';
-    case StaleWhileRevalidate = 'stale-while-revalidate';
-    case Immutable            = 'immutable';
+    case MAX_AGE                = 'max-age';
+    case MAX_STALE              = 'max-stale';
+    case MIN_FRESH              = 'min-fresh';
+    case MUST_REVALIDATE        = 'must-revalidate';
+    case MUST_UNDERSTAND        = 'must-understand';
+    case NO_CACHE               = 'no-cache';
+    case NO_STORE               = 'no-store';
+    case NO_TRANSFORM           = 'no-transform';
+    case ONLY_IF_CACHED         = 'only-if-cached';
+    case PRIVATE                = 'private';
+    case PROXY_REVALIDATE       = 'proxy-revalidate';
+    case PUBLIC                 = 'public';
+    case S_MAXAGE               = 's-maxage';
+    case STALE_IF_ERROR         = 'stale-if-error';
+    case STALE_WHILE_REVALIDATE = 'stale-while-revalidate';
+    case IMMUTABLE              = 'immutable';
 
     /*
     |---------------------------------------------------------------------------
@@ -41,15 +41,15 @@ enum CacheDirective: string
     public function isRequestDirective(): bool
     {
         return match ($this) {
-            self::MaxAge,
-            self::MaxStale,
-            self::MinFresh,
-            self::NoCache,
-            self::NoStore,
-            self::NoTransform,
-            self::OnlyIfCached,
-            self::StaleIfError => true,
-            default            => false,
+            self::MAX_AGE,
+            self::MAX_STALE,
+            self::MIN_FRESH,
+            self::NO_CACHE,
+            self::NO_STORE,
+            self::NO_TRANSFORM,
+            self::ONLY_IF_CACHED,
+            self::STALE_IF_ERROR => true,
+            default              => false,
         };
     }
 
@@ -61,19 +61,19 @@ enum CacheDirective: string
     public function isResponseDirective(): bool
     {
         return match ($this) {
-            self::MaxAge,
-            self::MustRevalidate,
-            self::MustUnderstand,
-            self::NoCache,
-            self::NoStore,
-            self::NoTransform,
-            self::Private,
-            self::ProxyRevalidate,
-            self::Public,
-            self::SMaxage,
-            self::StaleIfError,
-            self::StaleWhileRevalidate,
-            self::Immutable => true,
+            self::MAX_AGE,
+            self::MUST_REVALIDATE,
+            self::MUST_UNDERSTAND,
+            self::NO_CACHE,
+            self::NO_STORE,
+            self::NO_TRANSFORM,
+            self::PRIVATE,
+            self::PROXY_REVALIDATE,
+            self::PUBLIC,
+            self::S_MAXAGE,
+            self::STALE_IF_ERROR,
+            self::STALE_WHILE_REVALIDATE,
+            self::IMMUTABLE => true,
             default         => false,
         };
     }

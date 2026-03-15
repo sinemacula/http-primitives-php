@@ -10,7 +10,7 @@ namespace SineMacula\Http\Enums;
  */
 enum AuthScheme: string
 {
-    case Basic  = 'Basic';
-    case Bearer = 'Bearer';
-    case Digest = 'Digest';
+    case BASIC  = 'Basic';
+    case BEARER = 'Bearer';
+    case DIGEST = 'Digest';
 }

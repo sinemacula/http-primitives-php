@@ -35,9 +35,9 @@ class AuthSchemeTest extends TestCase
      */
     public static function backingValueProvider(): iterable
     {
-        yield 'Basic' => [AuthScheme::Basic, 'Basic'];
-        yield 'Bearer' => [AuthScheme::Bearer, 'Bearer'];
-        yield 'Digest' => [AuthScheme::Digest, 'Digest'];
+        yield 'BASIC' => [AuthScheme::BASIC, 'Basic'];
+        yield 'BEARER' => [AuthScheme::BEARER, 'Bearer'];
+        yield 'DIGEST' => [AuthScheme::DIGEST, 'Digest'];
     }
 
     /**
@@ -60,9 +60,9 @@ class AuthSchemeTest extends TestCase
      */
     public function testFromValueRoundTrip(): void
     {
-        static::assertSame(AuthScheme::Basic, AuthScheme::from('Basic'));
-        static::assertSame(AuthScheme::Bearer, AuthScheme::from('Bearer'));
-        static::assertSame(AuthScheme::Digest, AuthScheme::from('Digest'));
+        static::assertSame(AuthScheme::BASIC, AuthScheme::from('Basic'));
+        static::assertSame(AuthScheme::BEARER, AuthScheme::from('Bearer'));
+        static::assertSame(AuthScheme::DIGEST, AuthScheme::from('Digest'));
     }
 
     /**

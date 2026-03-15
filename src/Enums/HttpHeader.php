@@ -15,91 +15,101 @@ enum HttpHeader: string
     | Request headers
     |---------------------------------------------------------------------------
     */
-    case Accept            = 'Accept';
-    case AcceptCharset     = 'Accept-Charset';
-    case AcceptEncoding    = 'Accept-Encoding';
-    case AcceptLanguage    = 'Accept-Language';
-    case Authorization     = 'Authorization';
-    case CacheControl      = 'Cache-Control';
-    case Connection        = 'Connection';
-    case ContentLength     = 'Content-Length';
-    case ContentType       = 'Content-Type';
-    case Cookie            = 'Cookie';
-    case Expect            = 'Expect';
-    case Forwarded         = 'Forwarded';
-    case Host              = 'Host';
-    case IfMatch           = 'If-Match';
-    case IfModifiedSince   = 'If-Modified-Since';
-    case IfNoneMatch       = 'If-None-Match';
-    case IfRange           = 'If-Range';
-    case IfUnmodifiedSince = 'If-Unmodified-Since';
-    case Origin            = 'Origin';
-    case Range             = 'Range';
-    case Referer           = 'Referer';
-    case Te                = 'TE';
-    case UserAgent         = 'User-Agent';
+    case ACCEPT              = 'Accept';
+    case ACCEPT_CHARSET      = 'Accept-Charset';
+    case ACCEPT_ENCODING     = 'Accept-Encoding';
+    case ACCEPT_LANGUAGE     = 'Accept-Language';
+    case AUTHORIZATION       = 'Authorization';
+    case CACHE_CONTROL       = 'Cache-Control';
+    case CONNECTION          = 'Connection';
+    case CONTENT_LENGTH      = 'Content-Length';
+    case CONTENT_TYPE        = 'Content-Type';
+    case COOKIE              = 'Cookie';
+    case EXPECT              = 'Expect';
+    case FORWARDED           = 'Forwarded';
+    case HOST                = 'Host';
+    case IF_MATCH            = 'If-Match';
+    case IF_MODIFIED_SINCE   = 'If-Modified-Since';
+    case IF_NONE_MATCH       = 'If-None-Match';
+    case IF_RANGE            = 'If-Range';
+    case IF_UNMODIFIED_SINCE = 'If-Unmodified-Since';
+    case ORIGIN              = 'Origin';
+    case RANGE               = 'Range';
+    case REFERER             = 'Referer';
+    case TE                  = 'TE';
+    case USER_AGENT          = 'User-Agent';
 
     /*
     |---------------------------------------------------------------------------
     | Response headers
     |---------------------------------------------------------------------------
     */
-    case AcceptRanges       = 'Accept-Ranges';
-    case Age                = 'Age';
-    case Allow              = 'Allow';
-    case ContentDisposition = 'Content-Disposition';
-    case ContentEncoding    = 'Content-Encoding';
-    case ContentLanguage    = 'Content-Language';
-    case ContentLocation    = 'Content-Location';
-    case ContentRange       = 'Content-Range';
-    case Date               = 'Date';
-    case Etag               = 'ETag';
-    case Expires            = 'Expires';
-    case LastModified       = 'Last-Modified';
-    case Link               = 'Link';
-    case Location           = 'Location';
-    case ProxyAuthenticate  = 'Proxy-Authenticate';
-    case RetryAfter         = 'Retry-After';
-    case Server             = 'Server';
-    case SetCookie          = 'Set-Cookie';
-    case Vary               = 'Vary';
-    case WwwAuthenticate    = 'WWW-Authenticate';
+    case ACCEPT_RANGES       = 'Accept-Ranges';
+    case AGE                 = 'Age';
+    case ALLOW               = 'Allow';
+    case CONTENT_DISPOSITION = 'Content-Disposition';
+    case CONTENT_ENCODING    = 'Content-Encoding';
+    case CONTENT_LANGUAGE    = 'Content-Language';
+    case CONTENT_LOCATION    = 'Content-Location';
+    case CONTENT_RANGE       = 'Content-Range';
+    case DATE                = 'Date';
+    case ETAG                = 'ETag';
+    case EXPIRES             = 'Expires';
+    case LAST_MODIFIED       = 'Last-Modified';
+    case LINK                = 'Link';
+    case LOCATION            = 'Location';
+    case PROXY_AUTHENTICATE  = 'Proxy-Authenticate';
+    case RETRY_AFTER         = 'Retry-After';
+    case SERVER              = 'Server';
+    case SET_COOKIE          = 'Set-Cookie';
+    case VARY                = 'Vary';
+    case WWW_AUTHENTICATE    = 'WWW-Authenticate';
 
     /*
     |---------------------------------------------------------------------------
     | Security headers
     |---------------------------------------------------------------------------
     */
-    case AccessControlAllowCredentials = 'Access-Control-Allow-Credentials';
-    case AccessControlAllowHeaders     = 'Access-Control-Allow-Headers';
-    case AccessControlAllowMethods     = 'Access-Control-Allow-Methods';
-    case AccessControlAllowOrigin      = 'Access-Control-Allow-Origin';
-    case AccessControlExposeHeaders    = 'Access-Control-Expose-Headers';
-    case AccessControlMaxAge           = 'Access-Control-Max-Age';
-    case AccessControlRequestHeaders   = 'Access-Control-Request-Headers';
-    case AccessControlRequestMethod    = 'Access-Control-Request-Method';
-    case StrictTransportSecurity       = 'Strict-Transport-Security';
-    case ContentSecurityPolicy         = 'Content-Security-Policy';
-    case XContentTypeOptions           = 'X-Content-Type-Options';
-    case XFrameOptions                 = 'X-Frame-Options';
+    case ACCESS_CONTROL_ALLOW_CREDENTIALS = 'Access-Control-Allow-Credentials';
+    case ACCESS_CONTROL_ALLOW_HEADERS     = 'Access-Control-Allow-Headers';
+    case ACCESS_CONTROL_ALLOW_METHODS     = 'Access-Control-Allow-Methods';
+    case ACCESS_CONTROL_ALLOW_ORIGIN      = 'Access-Control-Allow-Origin';
+    case ACCESS_CONTROL_EXPOSE_HEADERS    = 'Access-Control-Expose-Headers';
+    case ACCESS_CONTROL_MAX_AGE           = 'Access-Control-Max-Age';
+    case ACCESS_CONTROL_REQUEST_HEADERS   = 'Access-Control-Request-Headers';
+    case ACCESS_CONTROL_REQUEST_METHOD    = 'Access-Control-Request-Method';
+    case STRICT_TRANSPORT_SECURITY        = 'Strict-Transport-Security';
+    case CONTENT_SECURITY_POLICY          = 'Content-Security-Policy';
+    case X_CONTENT_TYPE_OPTIONS           = 'X-Content-Type-Options';
+    case X_FRAME_OPTIONS                  = 'X-Frame-Options';
 
     /*
     |---------------------------------------------------------------------------
     | Non-standard (conventional) headers
     |---------------------------------------------------------------------------
     */
-    case XRequestId      = 'X-Request-ID';
-    case XForwardedFor   = 'X-Forwarded-For';
-    case XForwardedHost  = 'X-Forwarded-Host';
-    case XForwardedProto = 'X-Forwarded-Proto';
-    case XCorrelationId  = 'X-Correlation-ID';
-    case XAccelBuffering = 'X-Accel-Buffering';
+    case X_REQUEST_ID      = 'X-Request-ID';
+    case X_FORWARDED_FOR   = 'X-Forwarded-For';
+    case X_FORWARDED_HOST  = 'X-Forwarded-Host';
+    case X_FORWARDED_PROTO = 'X-Forwarded-Proto';
+    case X_CORRELATION_ID  = 'X-Correlation-ID';
+    case X_ACCEL_BUFFERING = 'X-Accel-Buffering';
 
     /*
     |---------------------------------------------------------------------------
     | Methods
     |---------------------------------------------------------------------------
     */
+
+    /**
+     * Get the header name string.
+     *
+     * @return string
+     */
+    public function getName(): string
+    {
+        return $this->value;
+    }
 
     /**
      * Check if the header is an IANA permanent standard.
@@ -109,14 +119,14 @@ enum HttpHeader: string
     public function isStandard(): bool
     {
         return match ($this) {
-            self::XRequestId,
-            self::XForwardedFor,
-            self::XForwardedHost,
-            self::XForwardedProto,
-            self::XCorrelationId,
-            self::XAccelBuffering,
-            self::XContentTypeOptions => false,
-            default                   => true,
+            self::X_REQUEST_ID,
+            self::X_FORWARDED_FOR,
+            self::X_FORWARDED_HOST,
+            self::X_FORWARDED_PROTO,
+            self::X_CORRELATION_ID,
+            self::X_ACCEL_BUFFERING,
+            self::X_CONTENT_TYPE_OPTIONS => false,
+            default                      => true,
         };
     }
 }
