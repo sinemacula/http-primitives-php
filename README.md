@@ -15,10 +15,11 @@ dependencies.
 |------------------|--------------|-------|------------------------------------------|
 | `HttpStatus`     | `int`        | 63    | All standard HTTP status codes (1xx-5xx) |
 | `HttpMethod`     | `string`     | 9     | HTTP request methods per RFC 9110        |
-| `MediaType`      | `string`     | 42    | Common MIME types across 7 categories    |
-| `HttpHeader`     | `string`     | 60    | Standard and non-standard HTTP headers   |
+| `MediaType`      | `string`     | 43    | Common MIME types across 7 categories    |
+| `HttpHeader`     | `string`     | 61    | Standard and non-standard HTTP headers   |
 | `CacheDirective` | `string`     | 16    | Cache-Control directive values           |
 | `AuthScheme`     | `string`     | 3     | HTTP authentication schemes              |
+| `Charset`        | `string`     | 20    | Common character encodings               |
 
 All enums live under the `SineMacula\Http\Enums` namespace.
 
@@ -26,13 +27,14 @@ All enums live under the `SineMacula\Http\Enums` namespace.
 
 Each enum includes contextual helper methods:
 
-- **HttpStatus** -- `isInformational()`, `isSuccess()`, `isRedirection()`, `isClientError()`, `isServerError()`,
-  `getReasonPhrase()`
-- **HttpMethod** -- `isSafe()`, `isIdempotent()`
-- **MediaType** -- `isApplication()`, `isText()`, `isMultipart()`, `isImage()`, `isAudio()`, `isVideo()`, `isFont()`,
-  `getExtension()`
-- **HttpHeader** -- `isStandard()`
+- **HttpStatus** -- `getCode()`, `getStatusLine()`, `getReasonPhrase()`, `isInformational()`, `isSuccess()`,
+  `isRedirection()`, `isClientError()`, `isServerError()`
+- **HttpMethod** -- `getVerb()`, `isSafe()`, `isIdempotent()`
+- **MediaType** -- `getMimeType()`, `withCharset()`, `getExtension()`, `isApplication()`, `isText()`,
+  `isMultipart()`, `isImage()`, `isAudio()`, `isVideo()`, `isFont()`
+- **HttpHeader** -- `getName()`, `isStandard()`
 - **CacheDirective** -- `isRequestDirective()`, `isResponseDirective()`
+- **Charset** -- `getEncoding()`
 
 ## Installation
 
@@ -43,22 +45,28 @@ composer require sinemacula/http-primitives-php
 ## Usage
 
 ```php
+use SineMacula\Http\Enums\Charset;
 use SineMacula\Http\Enums\HttpStatus;
 use SineMacula\Http\Enums\HttpMethod;
 use SineMacula\Http\Enums\MediaType;
 
 // Status code helpers
 $status = HttpStatus::from(404);
+$status->getCode();          // 404
+$status->getStatusLine();    // '404 Not Found'
 $status->isClientError();    // true
 $status->getReasonPhrase();  // 'Not Found'
 
 // Method safety checks
-HttpMethod::Get->isSafe();       // true
-HttpMethod::Post->isIdempotent(); // false
+HttpMethod::GET->isSafe();        // true
+HttpMethod::POST->isIdempotent(); // false
 
 // Media type inspection
-MediaType::ApplicationJson->isApplication(); // true
-MediaType::ApplicationJson->getExtension();  // 'json'
+MediaType::APPLICATION_JSON->isApplication(); // true
+MediaType::APPLICATION_JSON->getExtension();  // 'json'
+
+// Content type composition
+MediaType::TEXT_CSV->withCharset(Charset::UTF_8); // 'text/csv; charset=utf-8'
 ```
 
 ## Testing
