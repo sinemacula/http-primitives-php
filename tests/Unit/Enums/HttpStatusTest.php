@@ -19,75 +19,98 @@ use SineMacula\Http\Enums\HttpStatus;
 class HttpStatusTest extends TestCase
 {
     /**
+     * Test that the enum contains exactly 63 cases.
+     *
+     * @return void
+     */
+    public function testCaseCount(): void
+    {
+        static::assertCount(63, HttpStatus::cases());
+    }
+
+    /**
      * Provide each HttpStatus case with its expected backing value.
      *
      * @return iterable<string, array{0: \SineMacula\Http\Enums\HttpStatus, 1: int}>
      */
     public static function backingValuesProvider(): iterable
     {
-        yield 'Continue (100)' => [HttpStatus::Continue, 100];
-        yield 'SwitchingProtocols (101)' => [HttpStatus::SwitchingProtocols, 101];
-        yield 'Processing (102)' => [HttpStatus::Processing, 102];
-        yield 'EarlyHints (103)' => [HttpStatus::EarlyHints, 103];
-        yield 'Ok (200)' => [HttpStatus::Ok, 200];
-        yield 'Created (201)' => [HttpStatus::Created, 201];
-        yield 'Accepted (202)' => [HttpStatus::Accepted, 202];
-        yield 'NonAuthoritativeInformation (203)' => [HttpStatus::NonAuthoritativeInformation, 203];
-        yield 'NoContent (204)' => [HttpStatus::NoContent, 204];
-        yield 'ResetContent (205)' => [HttpStatus::ResetContent, 205];
-        yield 'PartialContent (206)' => [HttpStatus::PartialContent, 206];
-        yield 'MultiStatus (207)' => [HttpStatus::MultiStatus, 207];
-        yield 'AlreadyReported (208)' => [HttpStatus::AlreadyReported, 208];
-        yield 'ImUsed (226)' => [HttpStatus::ImUsed, 226];
-        yield 'MultipleChoices (300)' => [HttpStatus::MultipleChoices, 300];
-        yield 'MovedPermanently (301)' => [HttpStatus::MovedPermanently, 301];
-        yield 'Found (302)' => [HttpStatus::Found, 302];
-        yield 'SeeOther (303)' => [HttpStatus::SeeOther, 303];
-        yield 'NotModified (304)' => [HttpStatus::NotModified, 304];
-        yield 'UseProxy (305)' => [HttpStatus::UseProxy, 305];
-        yield 'Unused (306)' => [HttpStatus::Unused, 306];
-        yield 'TemporaryRedirect (307)' => [HttpStatus::TemporaryRedirect, 307];
-        yield 'PermanentRedirect (308)' => [HttpStatus::PermanentRedirect, 308];
-        yield 'BadRequest (400)' => [HttpStatus::BadRequest, 400];
-        yield 'Unauthorized (401)' => [HttpStatus::Unauthorized, 401];
-        yield 'PaymentRequired (402)' => [HttpStatus::PaymentRequired, 402];
-        yield 'Forbidden (403)' => [HttpStatus::Forbidden, 403];
-        yield 'NotFound (404)' => [HttpStatus::NotFound, 404];
-        yield 'MethodNotAllowed (405)' => [HttpStatus::MethodNotAllowed, 405];
-        yield 'NotAcceptable (406)' => [HttpStatus::NotAcceptable, 406];
-        yield 'ProxyAuthenticationRequired (407)' => [HttpStatus::ProxyAuthenticationRequired, 407];
-        yield 'RequestTimeout (408)' => [HttpStatus::RequestTimeout, 408];
-        yield 'Conflict (409)' => [HttpStatus::Conflict, 409];
-        yield 'Gone (410)' => [HttpStatus::Gone, 410];
-        yield 'LengthRequired (411)' => [HttpStatus::LengthRequired, 411];
-        yield 'PreconditionFailed (412)' => [HttpStatus::PreconditionFailed, 412];
-        yield 'ContentTooLarge (413)' => [HttpStatus::ContentTooLarge, 413];
-        yield 'UriTooLong (414)' => [HttpStatus::UriTooLong, 414];
-        yield 'UnsupportedMediaType (415)' => [HttpStatus::UnsupportedMediaType, 415];
-        yield 'RangeNotSatisfiable (416)' => [HttpStatus::RangeNotSatisfiable, 416];
-        yield 'ExpectationFailed (417)' => [HttpStatus::ExpectationFailed, 417];
-        yield 'ImATeapot (418)' => [HttpStatus::ImATeapot, 418];
-        yield 'MisdirectedRequest (421)' => [HttpStatus::MisdirectedRequest, 421];
-        yield 'UnprocessableContent (422)' => [HttpStatus::UnprocessableContent, 422];
-        yield 'Locked (423)' => [HttpStatus::Locked, 423];
-        yield 'FailedDependency (424)' => [HttpStatus::FailedDependency, 424];
-        yield 'TooEarly (425)' => [HttpStatus::TooEarly, 425];
-        yield 'UpgradeRequired (426)' => [HttpStatus::UpgradeRequired, 426];
-        yield 'PreconditionRequired (428)' => [HttpStatus::PreconditionRequired, 428];
-        yield 'TooManyRequests (429)' => [HttpStatus::TooManyRequests, 429];
-        yield 'RequestHeaderFieldsTooLarge (431)' => [HttpStatus::RequestHeaderFieldsTooLarge, 431];
-        yield 'UnavailableForLegalReasons (451)' => [HttpStatus::UnavailableForLegalReasons, 451];
-        yield 'InternalServerError (500)' => [HttpStatus::InternalServerError, 500];
-        yield 'NotImplemented (501)' => [HttpStatus::NotImplemented, 501];
-        yield 'BadGateway (502)' => [HttpStatus::BadGateway, 502];
-        yield 'ServiceUnavailable (503)' => [HttpStatus::ServiceUnavailable, 503];
-        yield 'GatewayTimeout (504)' => [HttpStatus::GatewayTimeout, 504];
-        yield 'HttpVersionNotSupported (505)' => [HttpStatus::HttpVersionNotSupported, 505];
-        yield 'VariantAlsoNegotiates (506)' => [HttpStatus::VariantAlsoNegotiates, 506];
-        yield 'InsufficientStorage (507)' => [HttpStatus::InsufficientStorage, 507];
-        yield 'LoopDetected (508)' => [HttpStatus::LoopDetected, 508];
-        yield 'NotExtended (510)' => [HttpStatus::NotExtended, 510];
-        yield 'NetworkAuthenticationRequired (511)' => [HttpStatus::NetworkAuthenticationRequired, 511];
+        yield 'CONTINUE (100)' => [HttpStatus::CONTINUE, 100];
+        yield 'SWITCHING_PROTOCOLS (101)' => [HttpStatus::SWITCHING_PROTOCOLS, 101];
+        yield 'PROCESSING (102)' => [HttpStatus::PROCESSING, 102];
+        yield 'EARLY_HINTS (103)' => [HttpStatus::EARLY_HINTS, 103];
+        yield 'OK (200)' => [HttpStatus::OK, 200];
+        yield 'CREATED (201)' => [HttpStatus::CREATED, 201];
+        yield 'ACCEPTED (202)' => [HttpStatus::ACCEPTED, 202];
+        yield 'NON_AUTHORITATIVE_INFORMATION (203)' => [HttpStatus::NON_AUTHORITATIVE_INFORMATION, 203];
+        yield 'NO_CONTENT (204)' => [HttpStatus::NO_CONTENT, 204];
+        yield 'RESET_CONTENT (205)' => [HttpStatus::RESET_CONTENT, 205];
+        yield 'PARTIAL_CONTENT (206)' => [HttpStatus::PARTIAL_CONTENT, 206];
+        yield 'MULTI_STATUS (207)' => [HttpStatus::MULTI_STATUS, 207];
+        yield 'ALREADY_REPORTED (208)' => [HttpStatus::ALREADY_REPORTED, 208];
+        yield 'IM_USED (226)' => [HttpStatus::IM_USED, 226];
+        yield 'MULTIPLE_CHOICES (300)' => [HttpStatus::MULTIPLE_CHOICES, 300];
+        yield 'MOVED_PERMANENTLY (301)' => [HttpStatus::MOVED_PERMANENTLY, 301];
+        yield 'FOUND (302)' => [HttpStatus::FOUND, 302];
+        yield 'SEE_OTHER (303)' => [HttpStatus::SEE_OTHER, 303];
+        yield 'NOT_MODIFIED (304)' => [HttpStatus::NOT_MODIFIED, 304];
+        yield 'USE_PROXY (305)' => [HttpStatus::USE_PROXY, 305];
+        yield 'UNUSED (306)' => [HttpStatus::UNUSED, 306];
+        yield 'TEMPORARY_REDIRECT (307)' => [HttpStatus::TEMPORARY_REDIRECT, 307];
+        yield 'PERMANENT_REDIRECT (308)' => [HttpStatus::PERMANENT_REDIRECT, 308];
+        yield 'BAD_REQUEST (400)' => [HttpStatus::BAD_REQUEST, 400];
+        yield 'UNAUTHORIZED (401)' => [HttpStatus::UNAUTHORIZED, 401];
+        yield 'PAYMENT_REQUIRED (402)' => [HttpStatus::PAYMENT_REQUIRED, 402];
+        yield 'FORBIDDEN (403)' => [HttpStatus::FORBIDDEN, 403];
+        yield 'NOT_FOUND (404)' => [HttpStatus::NOT_FOUND, 404];
+        yield 'METHOD_NOT_ALLOWED (405)' => [HttpStatus::METHOD_NOT_ALLOWED, 405];
+        yield 'NOT_ACCEPTABLE (406)' => [HttpStatus::NOT_ACCEPTABLE, 406];
+        yield 'PROXY_AUTHENTICATION_REQUIRED (407)' => [HttpStatus::PROXY_AUTHENTICATION_REQUIRED, 407];
+        yield 'REQUEST_TIMEOUT (408)' => [HttpStatus::REQUEST_TIMEOUT, 408];
+        yield 'CONFLICT (409)' => [HttpStatus::CONFLICT, 409];
+        yield 'GONE (410)' => [HttpStatus::GONE, 410];
+        yield 'LENGTH_REQUIRED (411)' => [HttpStatus::LENGTH_REQUIRED, 411];
+        yield 'PRECONDITION_FAILED (412)' => [HttpStatus::PRECONDITION_FAILED, 412];
+        yield 'CONTENT_TOO_LARGE (413)' => [HttpStatus::CONTENT_TOO_LARGE, 413];
+        yield 'URI_TOO_LONG (414)' => [HttpStatus::URI_TOO_LONG, 414];
+        yield 'UNSUPPORTED_MEDIA_TYPE (415)' => [HttpStatus::UNSUPPORTED_MEDIA_TYPE, 415];
+        yield 'RANGE_NOT_SATISFIABLE (416)' => [HttpStatus::RANGE_NOT_SATISFIABLE, 416];
+        yield 'EXPECTATION_FAILED (417)' => [HttpStatus::EXPECTATION_FAILED, 417];
+        yield 'IM_A_TEAPOT (418)' => [HttpStatus::IM_A_TEAPOT, 418];
+        yield 'MISDIRECTED_REQUEST (421)' => [HttpStatus::MISDIRECTED_REQUEST, 421];
+        yield 'UNPROCESSABLE_CONTENT (422)' => [HttpStatus::UNPROCESSABLE_CONTENT, 422];
+        yield 'LOCKED (423)' => [HttpStatus::LOCKED, 423];
+        yield 'FAILED_DEPENDENCY (424)' => [HttpStatus::FAILED_DEPENDENCY, 424];
+        yield 'TOO_EARLY (425)' => [HttpStatus::TOO_EARLY, 425];
+        yield 'UPGRADE_REQUIRED (426)' => [HttpStatus::UPGRADE_REQUIRED, 426];
+        yield 'PRECONDITION_REQUIRED (428)' => [HttpStatus::PRECONDITION_REQUIRED, 428];
+        yield 'TOO_MANY_REQUESTS (429)' => [HttpStatus::TOO_MANY_REQUESTS, 429];
+        yield 'REQUEST_HEADER_FIELDS_TOO_LARGE (431)' => [HttpStatus::REQUEST_HEADER_FIELDS_TOO_LARGE, 431];
+        yield 'UNAVAILABLE_FOR_LEGAL_REASONS (451)' => [HttpStatus::UNAVAILABLE_FOR_LEGAL_REASONS, 451];
+        yield 'INTERNAL_SERVER_ERROR (500)' => [HttpStatus::INTERNAL_SERVER_ERROR, 500];
+        yield 'NOT_IMPLEMENTED (501)' => [HttpStatus::NOT_IMPLEMENTED, 501];
+        yield 'BAD_GATEWAY (502)' => [HttpStatus::BAD_GATEWAY, 502];
+        yield 'SERVICE_UNAVAILABLE (503)' => [HttpStatus::SERVICE_UNAVAILABLE, 503];
+        yield 'GATEWAY_TIMEOUT (504)' => [HttpStatus::GATEWAY_TIMEOUT, 504];
+        yield 'HTTP_VERSION_NOT_SUPPORTED (505)' => [HttpStatus::HTTP_VERSION_NOT_SUPPORTED, 505];
+        yield 'VARIANT_ALSO_NEGOTIATES (506)' => [HttpStatus::VARIANT_ALSO_NEGOTIATES, 506];
+        yield 'INSUFFICIENT_STORAGE (507)' => [HttpStatus::INSUFFICIENT_STORAGE, 507];
+        yield 'LOOP_DETECTED (508)' => [HttpStatus::LOOP_DETECTED, 508];
+        yield 'NOT_EXTENDED (510)' => [HttpStatus::NOT_EXTENDED, 510];
+        yield 'NETWORK_AUTHENTICATION_REQUIRED (511)' => [HttpStatus::NETWORK_AUTHENTICATION_REQUIRED, 511];
+    }
+
+    /**
+     * Test that each case has the correct integer backing value.
+     *
+     * @param  \SineMacula\Http\Enums\HttpStatus  $case
+     * @param  int  $expectedValue
+     * @return void
+     */
+    #[DataProvider('backingValuesProvider')]
+    public function testBackingValues(HttpStatus $case, int $expectedValue): void
+    {
+        static::assertSame($expectedValue, $case->value);
     }
 
     /**
@@ -106,6 +129,19 @@ class HttpStatusTest extends TestCase
     }
 
     /**
+     * Test that isInformational returns the correct boolean for each case.
+     *
+     * @param  \SineMacula\Http\Enums\HttpStatus  $case
+     * @param  bool  $expected
+     * @return void
+     */
+    #[DataProvider('informationalProvider')]
+    public function testIsInformational(HttpStatus $case, bool $expected): void
+    {
+        static::assertSame($expected, $case->isInformational());
+    }
+
+    /**
      * Provide each HttpStatus case with its expected success status.
      *
      * @return iterable<string, array{0: \SineMacula\Http\Enums\HttpStatus, 1: bool}>
@@ -118,6 +154,19 @@ class HttpStatusTest extends TestCase
                 $case->value >= 200 && $case->value < 300,
             ];
         }
+    }
+
+    /**
+     * Test that isSuccess returns the correct boolean for each case.
+     *
+     * @param  \SineMacula\Http\Enums\HttpStatus  $case
+     * @param  bool  $expected
+     * @return void
+     */
+    #[DataProvider('successProvider')]
+    public function testIsSuccess(HttpStatus $case, bool $expected): void
+    {
+        static::assertSame($expected, $case->isSuccess());
     }
 
     /**
@@ -136,8 +185,20 @@ class HttpStatusTest extends TestCase
     }
 
     /**
-     * Provide each HttpStatus case with its expected client error
-     * status.
+     * Test that isRedirection returns the correct boolean for each case.
+     *
+     * @param  \SineMacula\Http\Enums\HttpStatus  $case
+     * @param  bool  $expected
+     * @return void
+     */
+    #[DataProvider('redirectionProvider')]
+    public function testIsRedirection(HttpStatus $case, bool $expected): void
+    {
+        static::assertSame($expected, $case->isRedirection());
+    }
+
+    /**
+     * Provide each HttpStatus case with its expected client error status.
      *
      * @return iterable<string, array{0: \SineMacula\Http\Enums\HttpStatus, 1: bool}>
      */
@@ -149,6 +210,19 @@ class HttpStatusTest extends TestCase
                 $case->value >= 400 && $case->value < 500,
             ];
         }
+    }
+
+    /**
+     * Test that isClientError returns the correct boolean for each case.
+     *
+     * @param  \SineMacula\Http\Enums\HttpStatus  $case
+     * @param  bool  $expected
+     * @return void
+     */
+    #[DataProvider('clientErrorProvider')]
+    public function testIsClientError(HttpStatus $case, bool $expected): void
+    {
+        static::assertSame($expected, $case->isClientError());
     }
 
     /**
@@ -167,168 +241,6 @@ class HttpStatusTest extends TestCase
     }
 
     /**
-     * Provide each HttpStatus case with its expected reason phrase.
-     *
-     * @return iterable<string, array{0: \SineMacula\Http\Enums\HttpStatus, 1: string}>
-     */
-    public static function reasonPhraseProvider(): iterable
-    {
-        yield 'Continue (100)' => [HttpStatus::Continue, 'Continue'];
-        yield 'SwitchingProtocols (101)' => [HttpStatus::SwitchingProtocols, 'Switching Protocols'];
-        yield 'Processing (102)' => [HttpStatus::Processing, 'Processing'];
-        yield 'EarlyHints (103)' => [HttpStatus::EarlyHints, 'Early Hints'];
-        yield 'Ok (200)' => [HttpStatus::Ok, 'OK'];
-        yield 'Created (201)' => [HttpStatus::Created, 'Created'];
-        yield 'Accepted (202)' => [HttpStatus::Accepted, 'Accepted'];
-        yield 'NonAuthoritativeInformation (203)' => [
-            HttpStatus::NonAuthoritativeInformation,
-            'Non-Authoritative Information',
-        ];
-        yield 'NoContent (204)' => [HttpStatus::NoContent, 'No Content'];
-        yield 'ResetContent (205)' => [HttpStatus::ResetContent, 'Reset Content'];
-        yield 'PartialContent (206)' => [HttpStatus::PartialContent, 'Partial Content'];
-        yield 'MultiStatus (207)' => [HttpStatus::MultiStatus, 'Multi-Status'];
-        yield 'AlreadyReported (208)' => [HttpStatus::AlreadyReported, 'Already Reported'];
-        yield 'ImUsed (226)' => [HttpStatus::ImUsed, 'IM Used'];
-        yield 'MultipleChoices (300)' => [HttpStatus::MultipleChoices, 'Multiple Choices'];
-        yield 'MovedPermanently (301)' => [HttpStatus::MovedPermanently, 'Moved Permanently'];
-        yield 'Found (302)' => [HttpStatus::Found, 'Found'];
-        yield 'SeeOther (303)' => [HttpStatus::SeeOther, 'See Other'];
-        yield 'NotModified (304)' => [HttpStatus::NotModified, 'Not Modified'];
-        yield 'UseProxy (305)' => [HttpStatus::UseProxy, 'Use Proxy'];
-        yield 'Unused (306)' => [HttpStatus::Unused, 'unused'];
-        yield 'TemporaryRedirect (307)' => [HttpStatus::TemporaryRedirect, 'Temporary Redirect'];
-        yield 'PermanentRedirect (308)' => [HttpStatus::PermanentRedirect, 'Permanent Redirect'];
-        yield 'BadRequest (400)' => [HttpStatus::BadRequest, 'Bad Request'];
-        yield 'Unauthorized (401)' => [HttpStatus::Unauthorized, 'Unauthorized'];
-        yield 'PaymentRequired (402)' => [HttpStatus::PaymentRequired, 'Payment Required'];
-        yield 'Forbidden (403)' => [HttpStatus::Forbidden, 'Forbidden'];
-        yield 'NotFound (404)' => [HttpStatus::NotFound, 'Not Found'];
-        yield 'MethodNotAllowed (405)' => [HttpStatus::MethodNotAllowed, 'Method Not Allowed'];
-        yield 'NotAcceptable (406)' => [HttpStatus::NotAcceptable, 'Not Acceptable'];
-        yield 'ProxyAuthenticationRequired (407)' => [
-            HttpStatus::ProxyAuthenticationRequired,
-            'Proxy Authentication Required',
-        ];
-        yield 'RequestTimeout (408)' => [HttpStatus::RequestTimeout, 'Request Timeout'];
-        yield 'Conflict (409)' => [HttpStatus::Conflict, 'Conflict'];
-        yield 'Gone (410)' => [HttpStatus::Gone, 'Gone'];
-        yield 'LengthRequired (411)' => [HttpStatus::LengthRequired, 'Length Required'];
-        yield 'PreconditionFailed (412)' => [HttpStatus::PreconditionFailed, 'Precondition Failed'];
-        yield 'ContentTooLarge (413)' => [HttpStatus::ContentTooLarge, 'Content Too Large'];
-        yield 'UriTooLong (414)' => [HttpStatus::UriTooLong, 'URI Too Long'];
-        yield 'UnsupportedMediaType (415)' => [HttpStatus::UnsupportedMediaType, 'Unsupported Media Type'];
-        yield 'RangeNotSatisfiable (416)' => [HttpStatus::RangeNotSatisfiable, 'Range Not Satisfiable'];
-        yield 'ExpectationFailed (417)' => [HttpStatus::ExpectationFailed, 'Expectation Failed'];
-        yield 'ImATeapot (418)' => [HttpStatus::ImATeapot, 'I\'m a Teapot'];
-        yield 'MisdirectedRequest (421)' => [HttpStatus::MisdirectedRequest, 'Misdirected Request'];
-        yield 'UnprocessableContent (422)' => [HttpStatus::UnprocessableContent, 'Unprocessable Content'];
-        yield 'Locked (423)' => [HttpStatus::Locked, 'Locked'];
-        yield 'FailedDependency (424)' => [HttpStatus::FailedDependency, 'Failed Dependency'];
-        yield 'TooEarly (425)' => [HttpStatus::TooEarly, 'Too Early'];
-        yield 'UpgradeRequired (426)' => [HttpStatus::UpgradeRequired, 'Upgrade Required'];
-        yield 'PreconditionRequired (428)' => [HttpStatus::PreconditionRequired, 'Precondition Required'];
-        yield 'TooManyRequests (429)' => [HttpStatus::TooManyRequests, 'Too Many Requests'];
-        yield 'RequestHeaderFieldsTooLarge (431)' => [
-            HttpStatus::RequestHeaderFieldsTooLarge,
-            'Request Header Fields Too Large',
-        ];
-        yield 'UnavailableForLegalReasons (451)' => [
-            HttpStatus::UnavailableForLegalReasons,
-            'Unavailable For Legal Reasons',
-        ];
-        yield 'InternalServerError (500)' => [HttpStatus::InternalServerError, 'Internal Server Error'];
-        yield 'NotImplemented (501)' => [HttpStatus::NotImplemented, 'Not Implemented'];
-        yield 'BadGateway (502)' => [HttpStatus::BadGateway, 'Bad Gateway'];
-        yield 'ServiceUnavailable (503)' => [HttpStatus::ServiceUnavailable, 'Service Unavailable'];
-        yield 'GatewayTimeout (504)' => [HttpStatus::GatewayTimeout, 'Gateway Timeout'];
-        yield 'HttpVersionNotSupported (505)' => [HttpStatus::HttpVersionNotSupported, 'HTTP Version Not Supported'];
-        yield 'VariantAlsoNegotiates (506)' => [HttpStatus::VariantAlsoNegotiates, 'Variant Also Negotiates'];
-        yield 'InsufficientStorage (507)' => [HttpStatus::InsufficientStorage, 'Insufficient Storage'];
-        yield 'LoopDetected (508)' => [HttpStatus::LoopDetected, 'Loop Detected'];
-        yield 'NotExtended (510)' => [HttpStatus::NotExtended, 'Not Extended'];
-        yield 'NetworkAuthenticationRequired (511)' => [
-            HttpStatus::NetworkAuthenticationRequired,
-            'Network Authentication Required',
-        ];
-    }
-
-    /**
-     * Test that the enum contains exactly 63 cases.
-     *
-     * @return void
-     */
-    public function testCaseCount(): void
-    {
-        static::assertCount(63, HttpStatus::cases());
-    }
-
-    /**
-     * Test that each case has the correct integer backing value.
-     *
-     * @param  \SineMacula\Http\Enums\HttpStatus  $case
-     * @param  int  $expectedValue
-     * @return void
-     */
-    #[DataProvider('backingValuesProvider')]
-    public function testBackingValues(HttpStatus $case, int $expectedValue): void
-    {
-        static::assertSame($expectedValue, $case->value);
-    }
-
-    /**
-     * Test that isInformational returns the correct boolean for each case.
-     *
-     * @param  \SineMacula\Http\Enums\HttpStatus  $case
-     * @param  bool  $expected
-     * @return void
-     */
-    #[DataProvider('informationalProvider')]
-    public function testIsInformational(HttpStatus $case, bool $expected): void
-    {
-        static::assertSame($expected, $case->isInformational());
-    }
-
-    /**
-     * Test that isSuccess returns the correct boolean for each case.
-     *
-     * @param  \SineMacula\Http\Enums\HttpStatus  $case
-     * @param  bool  $expected
-     * @return void
-     */
-    #[DataProvider('successProvider')]
-    public function testIsSuccess(HttpStatus $case, bool $expected): void
-    {
-        static::assertSame($expected, $case->isSuccess());
-    }
-
-    /**
-     * Test that isRedirection returns the correct boolean for each case.
-     *
-     * @param  \SineMacula\Http\Enums\HttpStatus  $case
-     * @param  bool  $expected
-     * @return void
-     */
-    #[DataProvider('redirectionProvider')]
-    public function testIsRedirection(HttpStatus $case, bool $expected): void
-    {
-        static::assertSame($expected, $case->isRedirection());
-    }
-
-    /**
-     * Test that isClientError returns the correct boolean for each case.
-     *
-     * @param  \SineMacula\Http\Enums\HttpStatus  $case
-     * @param  bool  $expected
-     * @return void
-     */
-    #[DataProvider('clientErrorProvider')]
-    public function testIsClientError(HttpStatus $case, bool $expected): void
-    {
-        static::assertSame($expected, $case->isClientError());
-    }
-
-    /**
      * Test that isServerError returns the correct boolean for each case.
      *
      * @param  \SineMacula\Http\Enums\HttpStatus  $case
@@ -339,6 +251,96 @@ class HttpStatusTest extends TestCase
     public function testIsServerError(HttpStatus $case, bool $expected): void
     {
         static::assertSame($expected, $case->isServerError());
+    }
+
+    /**
+     * Provide each HttpStatus case with its expected reason phrase.
+     *
+     * @return iterable<string, array{0: \SineMacula\Http\Enums\HttpStatus, 1: string}>
+     */
+    public static function reasonPhraseProvider(): iterable
+    {
+        yield 'CONTINUE (100)' => [HttpStatus::CONTINUE, 'Continue'];
+        yield 'SWITCHING_PROTOCOLS (101)' => [HttpStatus::SWITCHING_PROTOCOLS, 'Switching Protocols'];
+        yield 'PROCESSING (102)' => [HttpStatus::PROCESSING, 'Processing'];
+        yield 'EARLY_HINTS (103)' => [HttpStatus::EARLY_HINTS, 'Early Hints'];
+        yield 'OK (200)' => [HttpStatus::OK, 'OK'];
+        yield 'CREATED (201)' => [HttpStatus::CREATED, 'Created'];
+        yield 'ACCEPTED (202)' => [HttpStatus::ACCEPTED, 'Accepted'];
+        yield 'NON_AUTHORITATIVE_INFORMATION (203)' => [
+            HttpStatus::NON_AUTHORITATIVE_INFORMATION,
+            'Non-Authoritative Information',
+        ];
+        yield 'NO_CONTENT (204)' => [HttpStatus::NO_CONTENT, 'No Content'];
+        yield 'RESET_CONTENT (205)' => [HttpStatus::RESET_CONTENT, 'Reset Content'];
+        yield 'PARTIAL_CONTENT (206)' => [HttpStatus::PARTIAL_CONTENT, 'Partial Content'];
+        yield 'MULTI_STATUS (207)' => [HttpStatus::MULTI_STATUS, 'Multi-Status'];
+        yield 'ALREADY_REPORTED (208)' => [HttpStatus::ALREADY_REPORTED, 'Already Reported'];
+        yield 'IM_USED (226)' => [HttpStatus::IM_USED, 'IM Used'];
+        yield 'MULTIPLE_CHOICES (300)' => [HttpStatus::MULTIPLE_CHOICES, 'Multiple Choices'];
+        yield 'MOVED_PERMANENTLY (301)' => [HttpStatus::MOVED_PERMANENTLY, 'Moved Permanently'];
+        yield 'FOUND (302)' => [HttpStatus::FOUND, 'Found'];
+        yield 'SEE_OTHER (303)' => [HttpStatus::SEE_OTHER, 'See Other'];
+        yield 'NOT_MODIFIED (304)' => [HttpStatus::NOT_MODIFIED, 'Not Modified'];
+        yield 'USE_PROXY (305)' => [HttpStatus::USE_PROXY, 'Use Proxy'];
+        yield 'UNUSED (306)' => [HttpStatus::UNUSED, 'unused'];
+        yield 'TEMPORARY_REDIRECT (307)' => [HttpStatus::TEMPORARY_REDIRECT, 'Temporary Redirect'];
+        yield 'PERMANENT_REDIRECT (308)' => [HttpStatus::PERMANENT_REDIRECT, 'Permanent Redirect'];
+        yield 'BAD_REQUEST (400)' => [HttpStatus::BAD_REQUEST, 'Bad Request'];
+        yield 'UNAUTHORIZED (401)' => [HttpStatus::UNAUTHORIZED, 'Unauthorized'];
+        yield 'PAYMENT_REQUIRED (402)' => [HttpStatus::PAYMENT_REQUIRED, 'Payment Required'];
+        yield 'FORBIDDEN (403)' => [HttpStatus::FORBIDDEN, 'Forbidden'];
+        yield 'NOT_FOUND (404)' => [HttpStatus::NOT_FOUND, 'Not Found'];
+        yield 'METHOD_NOT_ALLOWED (405)' => [HttpStatus::METHOD_NOT_ALLOWED, 'Method Not Allowed'];
+        yield 'NOT_ACCEPTABLE (406)' => [HttpStatus::NOT_ACCEPTABLE, 'Not Acceptable'];
+        yield 'PROXY_AUTHENTICATION_REQUIRED (407)' => [
+            HttpStatus::PROXY_AUTHENTICATION_REQUIRED,
+            'Proxy Authentication Required',
+        ];
+        yield 'REQUEST_TIMEOUT (408)' => [HttpStatus::REQUEST_TIMEOUT, 'Request Timeout'];
+        yield 'CONFLICT (409)' => [HttpStatus::CONFLICT, 'Conflict'];
+        yield 'GONE (410)' => [HttpStatus::GONE, 'Gone'];
+        yield 'LENGTH_REQUIRED (411)' => [HttpStatus::LENGTH_REQUIRED, 'Length Required'];
+        yield 'PRECONDITION_FAILED (412)' => [HttpStatus::PRECONDITION_FAILED, 'Precondition Failed'];
+        yield 'CONTENT_TOO_LARGE (413)' => [HttpStatus::CONTENT_TOO_LARGE, 'Content Too Large'];
+        yield 'URI_TOO_LONG (414)' => [HttpStatus::URI_TOO_LONG, 'URI Too Long'];
+        yield 'UNSUPPORTED_MEDIA_TYPE (415)' => [HttpStatus::UNSUPPORTED_MEDIA_TYPE, 'Unsupported Media Type'];
+        yield 'RANGE_NOT_SATISFIABLE (416)' => [HttpStatus::RANGE_NOT_SATISFIABLE, 'Range Not Satisfiable'];
+        yield 'EXPECTATION_FAILED (417)' => [HttpStatus::EXPECTATION_FAILED, 'Expectation Failed'];
+        yield 'IM_A_TEAPOT (418)' => [HttpStatus::IM_A_TEAPOT, 'I\'m a Teapot'];
+        yield 'MISDIRECTED_REQUEST (421)' => [HttpStatus::MISDIRECTED_REQUEST, 'Misdirected Request'];
+        yield 'UNPROCESSABLE_CONTENT (422)' => [HttpStatus::UNPROCESSABLE_CONTENT, 'Unprocessable Content'];
+        yield 'LOCKED (423)' => [HttpStatus::LOCKED, 'Locked'];
+        yield 'FAILED_DEPENDENCY (424)' => [HttpStatus::FAILED_DEPENDENCY, 'Failed Dependency'];
+        yield 'TOO_EARLY (425)' => [HttpStatus::TOO_EARLY, 'Too Early'];
+        yield 'UPGRADE_REQUIRED (426)' => [HttpStatus::UPGRADE_REQUIRED, 'Upgrade Required'];
+        yield 'PRECONDITION_REQUIRED (428)' => [HttpStatus::PRECONDITION_REQUIRED, 'Precondition Required'];
+        yield 'TOO_MANY_REQUESTS (429)' => [HttpStatus::TOO_MANY_REQUESTS, 'Too Many Requests'];
+        yield 'REQUEST_HEADER_FIELDS_TOO_LARGE (431)' => [
+            HttpStatus::REQUEST_HEADER_FIELDS_TOO_LARGE,
+            'Request Header Fields Too Large',
+        ];
+        yield 'UNAVAILABLE_FOR_LEGAL_REASONS (451)' => [
+            HttpStatus::UNAVAILABLE_FOR_LEGAL_REASONS,
+            'Unavailable For Legal Reasons',
+        ];
+        yield 'INTERNAL_SERVER_ERROR (500)' => [HttpStatus::INTERNAL_SERVER_ERROR, 'Internal Server Error'];
+        yield 'NOT_IMPLEMENTED (501)' => [HttpStatus::NOT_IMPLEMENTED, 'Not Implemented'];
+        yield 'BAD_GATEWAY (502)' => [HttpStatus::BAD_GATEWAY, 'Bad Gateway'];
+        yield 'SERVICE_UNAVAILABLE (503)' => [HttpStatus::SERVICE_UNAVAILABLE, 'Service Unavailable'];
+        yield 'GATEWAY_TIMEOUT (504)' => [HttpStatus::GATEWAY_TIMEOUT, 'Gateway Timeout'];
+        yield 'HTTP_VERSION_NOT_SUPPORTED (505)' => [
+            HttpStatus::HTTP_VERSION_NOT_SUPPORTED,
+            'HTTP Version Not Supported',
+        ];
+        yield 'VARIANT_ALSO_NEGOTIATES (506)' => [HttpStatus::VARIANT_ALSO_NEGOTIATES, 'Variant Also Negotiates'];
+        yield 'INSUFFICIENT_STORAGE (507)' => [HttpStatus::INSUFFICIENT_STORAGE, 'Insufficient Storage'];
+        yield 'LOOP_DETECTED (508)' => [HttpStatus::LOOP_DETECTED, 'Loop Detected'];
+        yield 'NOT_EXTENDED (510)' => [HttpStatus::NOT_EXTENDED, 'Not Extended'];
+        yield 'NETWORK_AUTHENTICATION_REQUIRED (511)' => [
+            HttpStatus::NETWORK_AUTHENTICATION_REQUIRED,
+            'Network Authentication Required',
+        ];
     }
 
     /**
@@ -355,18 +357,43 @@ class HttpStatusTest extends TestCase
     }
 
     /**
+     * Test that getCode() returns the numeric status code.
+     *
+     * @return void
+     */
+    public function testGetCode(): void
+    {
+        static::assertSame(200, HttpStatus::OK->getCode());
+        static::assertSame(404, HttpStatus::NOT_FOUND->getCode());
+        static::assertSame(500, HttpStatus::INTERNAL_SERVER_ERROR->getCode());
+    }
+
+    /**
+     * Test that getStatusLine() returns the full status line.
+     *
+     * @return void
+     */
+    public function testGetStatusLine(): void
+    {
+        static::assertSame('200 OK', HttpStatus::OK->getStatusLine());
+        static::assertSame('404 Not Found', HttpStatus::NOT_FOUND->getStatusLine());
+        static::assertSame('500 Internal Server Error', HttpStatus::INTERNAL_SERVER_ERROR->getStatusLine());
+        static::assertSame('418 I\'m a Teapot', HttpStatus::IM_A_TEAPOT->getStatusLine());
+    }
+
+    /**
      * Test that from() returns the correct case for known values.
      *
      * @return void
      */
     public function testFromValueRoundTrip(): void
     {
-        static::assertSame(HttpStatus::Ok, HttpStatus::from(200));
-        static::assertSame(HttpStatus::NotFound, HttpStatus::from(404));
-        static::assertSame(HttpStatus::InternalServerError, HttpStatus::from(500));
-        static::assertSame(HttpStatus::Continue, HttpStatus::from(100));
-        static::assertSame(HttpStatus::MovedPermanently, HttpStatus::from(301));
-        static::assertSame(HttpStatus::ImATeapot, HttpStatus::from(418));
+        static::assertSame(HttpStatus::OK, HttpStatus::from(200));
+        static::assertSame(HttpStatus::NOT_FOUND, HttpStatus::from(404));
+        static::assertSame(HttpStatus::INTERNAL_SERVER_ERROR, HttpStatus::from(500));
+        static::assertSame(HttpStatus::CONTINUE, HttpStatus::from(100));
+        static::assertSame(HttpStatus::MOVED_PERMANENTLY, HttpStatus::from(301));
+        static::assertSame(HttpStatus::IM_A_TEAPOT, HttpStatus::from(418));
     }
 
     /**

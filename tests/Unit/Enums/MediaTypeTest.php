@@ -5,6 +5,7 @@ namespace Tests\Unit\Enums;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
+use SineMacula\Http\Enums\Charset;
 use SineMacula\Http\Enums\MediaType;
 
 /**
@@ -25,52 +26,52 @@ class MediaTypeTest extends TestCase
      */
     public static function backingValueProvider(): iterable
     {
-        yield 'ApplicationJson' => [MediaType::ApplicationJson, 'application/json'];
-        yield 'ApplicationXml' => [MediaType::ApplicationXml, 'application/xml'];
-        yield 'ApplicationPdf' => [MediaType::ApplicationPdf, 'application/pdf'];
-        yield 'ApplicationZip' => [MediaType::ApplicationZip, 'application/zip'];
-        yield 'ApplicationGzip' => [MediaType::ApplicationGzip, 'application/gzip'];
-        yield 'ApplicationOctetStream' => [MediaType::ApplicationOctetStream, 'application/octet-stream'];
-        yield 'ApplicationFormUrlencoded' => [
-            MediaType::ApplicationFormUrlencoded,
+        yield 'APPLICATION_JSON' => [MediaType::APPLICATION_JSON, 'application/json'];
+        yield 'APPLICATION_XML' => [MediaType::APPLICATION_XML, 'application/xml'];
+        yield 'APPLICATION_PDF' => [MediaType::APPLICATION_PDF, 'application/pdf'];
+        yield 'APPLICATION_ZIP' => [MediaType::APPLICATION_ZIP, 'application/zip'];
+        yield 'APPLICATION_GZIP' => [MediaType::APPLICATION_GZIP, 'application/gzip'];
+        yield 'APPLICATION_OCTET_STREAM' => [MediaType::APPLICATION_OCTET_STREAM, 'application/octet-stream'];
+        yield 'APPLICATION_FORM_URLENCODED' => [
+            MediaType::APPLICATION_FORM_URLENCODED,
             'application/x-www-form-urlencoded',
         ];
-        yield 'ApplicationJavascript' => [MediaType::ApplicationJavascript, 'application/javascript'];
-        yield 'ApplicationLdJson' => [MediaType::ApplicationLdJson, 'application/ld+json'];
-        yield 'ApplicationSql' => [MediaType::ApplicationSql, 'application/sql'];
-        yield 'ApplicationGraphql' => [MediaType::ApplicationGraphql, 'application/graphql'];
-        yield 'ApplicationYaml' => [MediaType::ApplicationYaml, 'application/yaml'];
-        yield 'ApplicationMsgpack' => [MediaType::ApplicationMsgpack, 'application/msgpack'];
-        yield 'TextPlain' => [MediaType::TextPlain, 'text/plain'];
-        yield 'TextHtml' => [MediaType::TextHtml, 'text/html'];
-        yield 'TextCss' => [MediaType::TextCss, 'text/css'];
-        yield 'TextCsv' => [MediaType::TextCsv, 'text/csv'];
-        yield 'TextXml' => [MediaType::TextXml, 'text/xml'];
-        yield 'TextMarkdown' => [MediaType::TextMarkdown, 'text/markdown'];
-        yield 'TextCalendar' => [MediaType::TextCalendar, 'text/calendar'];
-        yield 'TextJavascript' => [MediaType::TextJavascript, 'text/javascript'];
-        yield 'TextEventStream' => [MediaType::TextEventStream, 'text/event-stream'];
-        yield 'MultipartFormData' => [MediaType::MultipartFormData, 'multipart/form-data'];
-        yield 'MultipartByteRanges' => [MediaType::MultipartByteRanges, 'multipart/byteranges'];
-        yield 'MultipartMixed' => [MediaType::MultipartMixed, 'multipart/mixed'];
-        yield 'ImagePng' => [MediaType::ImagePng, 'image/png'];
-        yield 'ImageJpeg' => [MediaType::ImageJpeg, 'image/jpeg'];
-        yield 'ImageGif' => [MediaType::ImageGif, 'image/gif'];
-        yield 'ImageWebp' => [MediaType::ImageWebp, 'image/webp'];
-        yield 'ImageSvgXml' => [MediaType::ImageSvgXml, 'image/svg+xml'];
-        yield 'ImageAvif' => [MediaType::ImageAvif, 'image/avif'];
-        yield 'ImageIco' => [MediaType::ImageIco, 'image/x-icon'];
-        yield 'AudioMpeg' => [MediaType::AudioMpeg, 'audio/mpeg'];
-        yield 'AudioOgg' => [MediaType::AudioOgg, 'audio/ogg'];
-        yield 'AudioWav' => [MediaType::AudioWav, 'audio/wav'];
-        yield 'AudioWebm' => [MediaType::AudioWebm, 'audio/webm'];
-        yield 'VideoMp4' => [MediaType::VideoMp4, 'video/mp4'];
-        yield 'VideoWebm' => [MediaType::VideoWebm, 'video/webm'];
-        yield 'VideoOgg' => [MediaType::VideoOgg, 'video/ogg'];
-        yield 'FontWoff' => [MediaType::FontWoff, 'font/woff'];
-        yield 'FontWoff2' => [MediaType::FontWoff2, 'font/woff2'];
-        yield 'FontTtf' => [MediaType::FontTtf, 'font/ttf'];
-        yield 'FontOtf' => [MediaType::FontOtf, 'font/otf'];
+        yield 'APPLICATION_JAVASCRIPT' => [MediaType::APPLICATION_JAVASCRIPT, 'application/javascript'];
+        yield 'APPLICATION_LD_JSON' => [MediaType::APPLICATION_LD_JSON, 'application/ld+json'];
+        yield 'APPLICATION_SQL' => [MediaType::APPLICATION_SQL, 'application/sql'];
+        yield 'APPLICATION_GRAPHQL' => [MediaType::APPLICATION_GRAPHQL, 'application/graphql'];
+        yield 'APPLICATION_YAML' => [MediaType::APPLICATION_YAML, 'application/yaml'];
+        yield 'APPLICATION_MSGPACK' => [MediaType::APPLICATION_MSGPACK, 'application/msgpack'];
+        yield 'TEXT_PLAIN' => [MediaType::TEXT_PLAIN, 'text/plain'];
+        yield 'TEXT_HTML' => [MediaType::TEXT_HTML, 'text/html'];
+        yield 'TEXT_CSS' => [MediaType::TEXT_CSS, 'text/css'];
+        yield 'TEXT_CSV' => [MediaType::TEXT_CSV, 'text/csv'];
+        yield 'TEXT_XML' => [MediaType::TEXT_XML, 'text/xml'];
+        yield 'TEXT_MARKDOWN' => [MediaType::TEXT_MARKDOWN, 'text/markdown'];
+        yield 'TEXT_CALENDAR' => [MediaType::TEXT_CALENDAR, 'text/calendar'];
+        yield 'TEXT_JAVASCRIPT' => [MediaType::TEXT_JAVASCRIPT, 'text/javascript'];
+        yield 'TEXT_EVENT_STREAM' => [MediaType::TEXT_EVENT_STREAM, 'text/event-stream'];
+        yield 'MULTIPART_FORM_DATA' => [MediaType::MULTIPART_FORM_DATA, 'multipart/form-data'];
+        yield 'MULTIPART_BYTE_RANGES' => [MediaType::MULTIPART_BYTE_RANGES, 'multipart/byteranges'];
+        yield 'MULTIPART_MIXED' => [MediaType::MULTIPART_MIXED, 'multipart/mixed'];
+        yield 'IMAGE_PNG' => [MediaType::IMAGE_PNG, 'image/png'];
+        yield 'IMAGE_JPEG' => [MediaType::IMAGE_JPEG, 'image/jpeg'];
+        yield 'IMAGE_GIF' => [MediaType::IMAGE_GIF, 'image/gif'];
+        yield 'IMAGE_WEBP' => [MediaType::IMAGE_WEBP, 'image/webp'];
+        yield 'IMAGE_SVG_XML' => [MediaType::IMAGE_SVG_XML, 'image/svg+xml'];
+        yield 'IMAGE_AVIF' => [MediaType::IMAGE_AVIF, 'image/avif'];
+        yield 'IMAGE_ICO' => [MediaType::IMAGE_ICO, 'image/x-icon'];
+        yield 'AUDIO_MPEG' => [MediaType::AUDIO_MPEG, 'audio/mpeg'];
+        yield 'AUDIO_OGG' => [MediaType::AUDIO_OGG, 'audio/ogg'];
+        yield 'AUDIO_WAV' => [MediaType::AUDIO_WAV, 'audio/wav'];
+        yield 'AUDIO_WEBM' => [MediaType::AUDIO_WEBM, 'audio/webm'];
+        yield 'VIDEO_MP4' => [MediaType::VIDEO_MP4, 'video/mp4'];
+        yield 'VIDEO_WEBM' => [MediaType::VIDEO_WEBM, 'video/webm'];
+        yield 'VIDEO_OGG' => [MediaType::VIDEO_OGG, 'video/ogg'];
+        yield 'FONT_WOFF' => [MediaType::FONT_WOFF, 'font/woff'];
+        yield 'FONT_WOFF2' => [MediaType::FONT_WOFF2, 'font/woff2'];
+        yield 'FONT_TTF' => [MediaType::FONT_TTF, 'font/ttf'];
+        yield 'FONT_OTF' => [MediaType::FONT_OTF, 'font/otf'];
     }
 
     /**
@@ -164,49 +165,49 @@ class MediaTypeTest extends TestCase
      */
     public static function extensionProvider(): iterable
     {
-        yield 'ApplicationJson' => [MediaType::ApplicationJson, 'json'];
-        yield 'ApplicationXml' => [MediaType::ApplicationXml, 'xml'];
-        yield 'ApplicationPdf' => [MediaType::ApplicationPdf, 'pdf'];
-        yield 'ApplicationZip' => [MediaType::ApplicationZip, 'zip'];
-        yield 'ApplicationGzip' => [MediaType::ApplicationGzip, 'gz'];
-        yield 'ApplicationOctetStream' => [MediaType::ApplicationOctetStream, 'bin'];
-        yield 'ApplicationFormUrlencoded' => [MediaType::ApplicationFormUrlencoded, null];
-        yield 'ApplicationJavascript' => [MediaType::ApplicationJavascript, 'js'];
-        yield 'ApplicationLdJson' => [MediaType::ApplicationLdJson, 'jsonld'];
-        yield 'ApplicationSql' => [MediaType::ApplicationSql, 'sql'];
-        yield 'ApplicationGraphql' => [MediaType::ApplicationGraphql, 'graphql'];
-        yield 'ApplicationYaml' => [MediaType::ApplicationYaml, 'yaml'];
-        yield 'ApplicationMsgpack' => [MediaType::ApplicationMsgpack, 'msgpack'];
-        yield 'TextPlain' => [MediaType::TextPlain, 'txt'];
-        yield 'TextHtml' => [MediaType::TextHtml, 'html'];
-        yield 'TextCss' => [MediaType::TextCss, 'css'];
-        yield 'TextCsv' => [MediaType::TextCsv, 'csv'];
-        yield 'TextXml' => [MediaType::TextXml, 'xml'];
-        yield 'TextMarkdown' => [MediaType::TextMarkdown, 'md'];
-        yield 'TextCalendar' => [MediaType::TextCalendar, 'ics'];
-        yield 'TextJavascript' => [MediaType::TextJavascript, 'js'];
-        yield 'TextEventStream' => [MediaType::TextEventStream, null];
-        yield 'MultipartFormData' => [MediaType::MultipartFormData, null];
-        yield 'MultipartByteRanges' => [MediaType::MultipartByteRanges, null];
-        yield 'MultipartMixed' => [MediaType::MultipartMixed, null];
-        yield 'ImagePng' => [MediaType::ImagePng, 'png'];
-        yield 'ImageJpeg' => [MediaType::ImageJpeg, 'jpg'];
-        yield 'ImageGif' => [MediaType::ImageGif, 'gif'];
-        yield 'ImageWebp' => [MediaType::ImageWebp, 'webp'];
-        yield 'ImageSvgXml' => [MediaType::ImageSvgXml, 'svg'];
-        yield 'ImageAvif' => [MediaType::ImageAvif, 'avif'];
-        yield 'ImageIco' => [MediaType::ImageIco, 'ico'];
-        yield 'AudioMpeg' => [MediaType::AudioMpeg, 'mp3'];
-        yield 'AudioOgg' => [MediaType::AudioOgg, 'ogg'];
-        yield 'AudioWav' => [MediaType::AudioWav, 'wav'];
-        yield 'AudioWebm' => [MediaType::AudioWebm, 'weba'];
-        yield 'VideoMp4' => [MediaType::VideoMp4, 'mp4'];
-        yield 'VideoWebm' => [MediaType::VideoWebm, 'webm'];
-        yield 'VideoOgg' => [MediaType::VideoOgg, 'ogv'];
-        yield 'FontWoff' => [MediaType::FontWoff, 'woff'];
-        yield 'FontWoff2' => [MediaType::FontWoff2, 'woff2'];
-        yield 'FontTtf' => [MediaType::FontTtf, 'ttf'];
-        yield 'FontOtf' => [MediaType::FontOtf, 'otf'];
+        yield 'APPLICATION_JSON' => [MediaType::APPLICATION_JSON, 'json'];
+        yield 'APPLICATION_XML' => [MediaType::APPLICATION_XML, 'xml'];
+        yield 'APPLICATION_PDF' => [MediaType::APPLICATION_PDF, 'pdf'];
+        yield 'APPLICATION_ZIP' => [MediaType::APPLICATION_ZIP, 'zip'];
+        yield 'APPLICATION_GZIP' => [MediaType::APPLICATION_GZIP, 'gz'];
+        yield 'APPLICATION_OCTET_STREAM' => [MediaType::APPLICATION_OCTET_STREAM, 'bin'];
+        yield 'APPLICATION_FORM_URLENCODED' => [MediaType::APPLICATION_FORM_URLENCODED, null];
+        yield 'APPLICATION_JAVASCRIPT' => [MediaType::APPLICATION_JAVASCRIPT, 'js'];
+        yield 'APPLICATION_LD_JSON' => [MediaType::APPLICATION_LD_JSON, 'jsonld'];
+        yield 'APPLICATION_SQL' => [MediaType::APPLICATION_SQL, 'sql'];
+        yield 'APPLICATION_GRAPHQL' => [MediaType::APPLICATION_GRAPHQL, 'graphql'];
+        yield 'APPLICATION_YAML' => [MediaType::APPLICATION_YAML, 'yaml'];
+        yield 'APPLICATION_MSGPACK' => [MediaType::APPLICATION_MSGPACK, 'msgpack'];
+        yield 'TEXT_PLAIN' => [MediaType::TEXT_PLAIN, 'txt'];
+        yield 'TEXT_HTML' => [MediaType::TEXT_HTML, 'html'];
+        yield 'TEXT_CSS' => [MediaType::TEXT_CSS, 'css'];
+        yield 'TEXT_CSV' => [MediaType::TEXT_CSV, 'csv'];
+        yield 'TEXT_XML' => [MediaType::TEXT_XML, 'xml'];
+        yield 'TEXT_MARKDOWN' => [MediaType::TEXT_MARKDOWN, 'md'];
+        yield 'TEXT_CALENDAR' => [MediaType::TEXT_CALENDAR, 'ics'];
+        yield 'TEXT_JAVASCRIPT' => [MediaType::TEXT_JAVASCRIPT, 'js'];
+        yield 'TEXT_EVENT_STREAM' => [MediaType::TEXT_EVENT_STREAM, null];
+        yield 'MULTIPART_FORM_DATA' => [MediaType::MULTIPART_FORM_DATA, null];
+        yield 'MULTIPART_BYTE_RANGES' => [MediaType::MULTIPART_BYTE_RANGES, null];
+        yield 'MULTIPART_MIXED' => [MediaType::MULTIPART_MIXED, null];
+        yield 'IMAGE_PNG' => [MediaType::IMAGE_PNG, 'png'];
+        yield 'IMAGE_JPEG' => [MediaType::IMAGE_JPEG, 'jpg'];
+        yield 'IMAGE_GIF' => [MediaType::IMAGE_GIF, 'gif'];
+        yield 'IMAGE_WEBP' => [MediaType::IMAGE_WEBP, 'webp'];
+        yield 'IMAGE_SVG_XML' => [MediaType::IMAGE_SVG_XML, 'svg'];
+        yield 'IMAGE_AVIF' => [MediaType::IMAGE_AVIF, 'avif'];
+        yield 'IMAGE_ICO' => [MediaType::IMAGE_ICO, 'ico'];
+        yield 'AUDIO_MPEG' => [MediaType::AUDIO_MPEG, 'mp3'];
+        yield 'AUDIO_OGG' => [MediaType::AUDIO_OGG, 'ogg'];
+        yield 'AUDIO_WAV' => [MediaType::AUDIO_WAV, 'wav'];
+        yield 'AUDIO_WEBM' => [MediaType::AUDIO_WEBM, 'weba'];
+        yield 'VIDEO_MP4' => [MediaType::VIDEO_MP4, 'mp4'];
+        yield 'VIDEO_WEBM' => [MediaType::VIDEO_WEBM, 'webm'];
+        yield 'VIDEO_OGG' => [MediaType::VIDEO_OGG, 'ogv'];
+        yield 'FONT_WOFF' => [MediaType::FONT_WOFF, 'woff'];
+        yield 'FONT_WOFF2' => [MediaType::FONT_WOFF2, 'woff2'];
+        yield 'FONT_TTF' => [MediaType::FONT_TTF, 'ttf'];
+        yield 'FONT_OTF' => [MediaType::FONT_OTF, 'otf'];
     }
 
     /**
@@ -334,6 +335,31 @@ class MediaTypeTest extends TestCase
     public function testGetExtension(MediaType $case, ?string $expectedExtension): void
     {
         static::assertSame($expectedExtension, $case->getExtension());
+    }
+
+    /**
+     * Test that getMimeType() returns the MIME type string.
+     *
+     * @return void
+     */
+    public function testGetMimeType(): void
+    {
+        static::assertSame('application/json', MediaType::APPLICATION_JSON->getMimeType());
+        static::assertSame('text/html', MediaType::TEXT_HTML->getMimeType());
+        static::assertSame('image/png', MediaType::IMAGE_PNG->getMimeType());
+    }
+
+    /**
+     * Test that withCharset() builds the correct content type string.
+     *
+     * @return void
+     */
+    public function testWithCharset(): void
+    {
+        static::assertSame('text/csv; charset=utf-8', MediaType::TEXT_CSV->withCharset(Charset::UTF_8));
+        static::assertSame('application/json; charset=utf-8', MediaType::APPLICATION_JSON->withCharset(Charset::UTF_8));
+        static::assertSame('text/html; charset=iso-8859-1', MediaType::TEXT_HTML->withCharset(Charset::ISO_8859_1));
+        static::assertSame('text/plain; charset=us-ascii', MediaType::TEXT_PLAIN->withCharset(Charset::ASCII));
     }
 
     /**

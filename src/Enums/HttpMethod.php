@@ -10,21 +10,31 @@ namespace SineMacula\Http\Enums;
  */
 enum HttpMethod: string
 {
-    case Get     = 'GET';
-    case Head    = 'HEAD';
-    case Post    = 'POST';
-    case Put     = 'PUT';
-    case Patch   = 'PATCH';
-    case Delete  = 'DELETE';
-    case Connect = 'CONNECT';
-    case Options = 'OPTIONS';
-    case Trace   = 'TRACE';
+    case GET     = 'GET';
+    case HEAD    = 'HEAD';
+    case POST    = 'POST';
+    case PUT     = 'PUT';
+    case PATCH   = 'PATCH';
+    case DELETE  = 'DELETE';
+    case CONNECT = 'CONNECT';
+    case OPTIONS = 'OPTIONS';
+    case TRACE   = 'TRACE';
 
     /*
     |---------------------------------------------------------------------------
     | Methods
     |---------------------------------------------------------------------------
     */
+
+    /**
+     * Get the HTTP verb string.
+     *
+     * @return string
+     */
+    public function getVerb(): string
+    {
+        return $this->value;
+    }
 
     /**
      * Check if the method is safe per RFC 9110.
@@ -34,7 +44,7 @@ enum HttpMethod: string
     public function isSafe(): bool
     {
         return match ($this) {
-            self::Get, self::Head, self::Options, self::Trace => true,
+            self::GET, self::HEAD, self::OPTIONS, self::TRACE => true,
             default => false,
         };
     }
@@ -47,7 +57,7 @@ enum HttpMethod: string
     public function isIdempotent(): bool
     {
         return match ($this) {
-            self::Get, self::Head, self::Put, self::Delete, self::Options, self::Trace => true,
+            self::GET, self::HEAD, self::PUT, self::DELETE, self::OPTIONS, self::TRACE => true,
             default => false,
         };
     }

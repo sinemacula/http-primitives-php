@@ -25,15 +25,15 @@ class HttpMethodTest extends TestCase
      */
     public static function backingValuesProvider(): iterable
     {
-        yield 'Get' => [HttpMethod::Get, 'GET'];
-        yield 'Head' => [HttpMethod::Head, 'HEAD'];
-        yield 'Post' => [HttpMethod::Post, 'POST'];
-        yield 'Put' => [HttpMethod::Put, 'PUT'];
-        yield 'Patch' => [HttpMethod::Patch, 'PATCH'];
-        yield 'Delete' => [HttpMethod::Delete, 'DELETE'];
-        yield 'Connect' => [HttpMethod::Connect, 'CONNECT'];
-        yield 'Options' => [HttpMethod::Options, 'OPTIONS'];
-        yield 'Trace' => [HttpMethod::Trace, 'TRACE'];
+        yield 'GET' => [HttpMethod::GET, 'GET'];
+        yield 'HEAD' => [HttpMethod::HEAD, 'HEAD'];
+        yield 'POST' => [HttpMethod::POST, 'POST'];
+        yield 'PUT' => [HttpMethod::PUT, 'PUT'];
+        yield 'PATCH' => [HttpMethod::PATCH, 'PATCH'];
+        yield 'DELETE' => [HttpMethod::DELETE, 'DELETE'];
+        yield 'CONNECT' => [HttpMethod::CONNECT, 'CONNECT'];
+        yield 'OPTIONS' => [HttpMethod::OPTIONS, 'OPTIONS'];
+        yield 'TRACE' => [HttpMethod::TRACE, 'TRACE'];
     }
 
     /**
@@ -43,34 +43,33 @@ class HttpMethodTest extends TestCase
      */
     public static function safeMethodsProvider(): iterable
     {
-        yield 'Get is safe' => [HttpMethod::Get, true];
-        yield 'Head is safe' => [HttpMethod::Head, true];
-        yield 'Post is not safe' => [HttpMethod::Post, false];
-        yield 'Put is not safe' => [HttpMethod::Put, false];
-        yield 'Patch is not safe' => [HttpMethod::Patch, false];
-        yield 'Delete is not safe' => [HttpMethod::Delete, false];
-        yield 'Connect is not safe' => [HttpMethod::Connect, false];
-        yield 'Options is safe' => [HttpMethod::Options, true];
-        yield 'Trace is safe' => [HttpMethod::Trace, true];
+        yield 'GET is safe' => [HttpMethod::GET, true];
+        yield 'HEAD is safe' => [HttpMethod::HEAD, true];
+        yield 'POST is not safe' => [HttpMethod::POST, false];
+        yield 'PUT is not safe' => [HttpMethod::PUT, false];
+        yield 'PATCH is not safe' => [HttpMethod::PATCH, false];
+        yield 'DELETE is not safe' => [HttpMethod::DELETE, false];
+        yield 'CONNECT is not safe' => [HttpMethod::CONNECT, false];
+        yield 'OPTIONS is safe' => [HttpMethod::OPTIONS, true];
+        yield 'TRACE is safe' => [HttpMethod::TRACE, true];
     }
 
     /**
-     * Provide each HttpMethod case with its expected idempotency
-     * status.
+     * Provide each HttpMethod case with its expected idempotency status.
      *
      * @return iterable<string, array{0: \SineMacula\Http\Enums\HttpMethod, 1: bool}>
      */
     public static function idempotentMethodsProvider(): iterable
     {
-        yield 'Get is idempotent' => [HttpMethod::Get, true];
-        yield 'Head is idempotent' => [HttpMethod::Head, true];
-        yield 'Post is not idempotent' => [HttpMethod::Post, false];
-        yield 'Put is idempotent' => [HttpMethod::Put, true];
-        yield 'Patch is not idempotent' => [HttpMethod::Patch, false];
-        yield 'Delete is idempotent' => [HttpMethod::Delete, true];
-        yield 'Connect is not idempotent' => [HttpMethod::Connect, false];
-        yield 'Options is idempotent' => [HttpMethod::Options, true];
-        yield 'Trace is idempotent' => [HttpMethod::Trace, true];
+        yield 'GET is idempotent' => [HttpMethod::GET, true];
+        yield 'HEAD is idempotent' => [HttpMethod::HEAD, true];
+        yield 'POST is not idempotent' => [HttpMethod::POST, false];
+        yield 'PUT is idempotent' => [HttpMethod::PUT, true];
+        yield 'PATCH is not idempotent' => [HttpMethod::PATCH, false];
+        yield 'DELETE is idempotent' => [HttpMethod::DELETE, true];
+        yield 'CONNECT is not idempotent' => [HttpMethod::CONNECT, false];
+        yield 'OPTIONS is idempotent' => [HttpMethod::OPTIONS, true];
+        yield 'TRACE is idempotent' => [HttpMethod::TRACE, true];
     }
 
     /**
@@ -123,18 +122,30 @@ class HttpMethodTest extends TestCase
     }
 
     /**
+     * Test that getVerb() returns the HTTP verb string.
+     *
+     * @return void
+     */
+    public function testGetVerb(): void
+    {
+        static::assertSame('GET', HttpMethod::GET->getVerb());
+        static::assertSame('POST', HttpMethod::POST->getVerb());
+        static::assertSame('DELETE', HttpMethod::DELETE->getVerb());
+    }
+
+    /**
      * Test that from() returns the correct case for known values.
      *
      * @return void
      */
     public function testFromValueRoundTrip(): void
     {
-        static::assertSame(HttpMethod::Get, HttpMethod::from('GET'));
-        static::assertSame(HttpMethod::Head, HttpMethod::from('HEAD'));
-        static::assertSame(HttpMethod::Post, HttpMethod::from('POST'));
-        static::assertSame(HttpMethod::Put, HttpMethod::from('PUT'));
-        static::assertSame(HttpMethod::Delete, HttpMethod::from('DELETE'));
-        static::assertSame(HttpMethod::Options, HttpMethod::from('OPTIONS'));
+        static::assertSame(HttpMethod::GET, HttpMethod::from('GET'));
+        static::assertSame(HttpMethod::HEAD, HttpMethod::from('HEAD'));
+        static::assertSame(HttpMethod::POST, HttpMethod::from('POST'));
+        static::assertSame(HttpMethod::PUT, HttpMethod::from('PUT'));
+        static::assertSame(HttpMethod::DELETE, HttpMethod::from('DELETE'));
+        static::assertSame(HttpMethod::OPTIONS, HttpMethod::from('OPTIONS'));
     }
 
     /**

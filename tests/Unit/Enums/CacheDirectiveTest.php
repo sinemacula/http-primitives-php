@@ -35,22 +35,22 @@ class CacheDirectiveTest extends TestCase
      */
     public static function backingValueProvider(): iterable
     {
-        yield 'max-age' => [CacheDirective::MaxAge, 'max-age'];
-        yield 'max-stale' => [CacheDirective::MaxStale, 'max-stale'];
-        yield 'min-fresh' => [CacheDirective::MinFresh, 'min-fresh'];
-        yield 'must-revalidate' => [CacheDirective::MustRevalidate, 'must-revalidate'];
-        yield 'must-understand' => [CacheDirective::MustUnderstand, 'must-understand'];
-        yield 'no-cache' => [CacheDirective::NoCache, 'no-cache'];
-        yield 'no-store' => [CacheDirective::NoStore, 'no-store'];
-        yield 'no-transform' => [CacheDirective::NoTransform, 'no-transform'];
-        yield 'only-if-cached' => [CacheDirective::OnlyIfCached, 'only-if-cached'];
-        yield 'private' => [CacheDirective::Private, 'private'];
-        yield 'proxy-revalidate' => [CacheDirective::ProxyRevalidate, 'proxy-revalidate'];
-        yield 'public' => [CacheDirective::Public, 'public'];
-        yield 's-maxage' => [CacheDirective::SMaxage, 's-maxage'];
-        yield 'stale-if-error' => [CacheDirective::StaleIfError, 'stale-if-error'];
-        yield 'stale-while-revalidate' => [CacheDirective::StaleWhileRevalidate, 'stale-while-revalidate'];
-        yield 'immutable' => [CacheDirective::Immutable, 'immutable'];
+        yield 'max-age' => [CacheDirective::MAX_AGE, 'max-age'];
+        yield 'max-stale' => [CacheDirective::MAX_STALE, 'max-stale'];
+        yield 'min-fresh' => [CacheDirective::MIN_FRESH, 'min-fresh'];
+        yield 'must-revalidate' => [CacheDirective::MUST_REVALIDATE, 'must-revalidate'];
+        yield 'must-understand' => [CacheDirective::MUST_UNDERSTAND, 'must-understand'];
+        yield 'no-cache' => [CacheDirective::NO_CACHE, 'no-cache'];
+        yield 'no-store' => [CacheDirective::NO_STORE, 'no-store'];
+        yield 'no-transform' => [CacheDirective::NO_TRANSFORM, 'no-transform'];
+        yield 'only-if-cached' => [CacheDirective::ONLY_IF_CACHED, 'only-if-cached'];
+        yield 'private' => [CacheDirective::PRIVATE, 'private'];
+        yield 'proxy-revalidate' => [CacheDirective::PROXY_REVALIDATE, 'proxy-revalidate'];
+        yield 'public' => [CacheDirective::PUBLIC, 'public'];
+        yield 's-maxage' => [CacheDirective::S_MAXAGE, 's-maxage'];
+        yield 'stale-if-error' => [CacheDirective::STALE_IF_ERROR, 'stale-if-error'];
+        yield 'stale-while-revalidate' => [CacheDirective::STALE_WHILE_REVALIDATE, 'stale-while-revalidate'];
+        yield 'immutable' => [CacheDirective::IMMUTABLE, 'immutable'];
     }
 
     /**
@@ -73,22 +73,22 @@ class CacheDirectiveTest extends TestCase
      */
     public static function isRequestDirectiveProvider(): iterable
     {
-        yield 'MaxAge is request directive' => [CacheDirective::MaxAge, true];
-        yield 'MaxStale is request directive' => [CacheDirective::MaxStale, true];
-        yield 'MinFresh is request directive' => [CacheDirective::MinFresh, true];
-        yield 'MustRevalidate is not request directive' => [CacheDirective::MustRevalidate, false];
-        yield 'MustUnderstand is not request directive' => [CacheDirective::MustUnderstand, false];
-        yield 'NoCache is request directive' => [CacheDirective::NoCache, true];
-        yield 'NoStore is request directive' => [CacheDirective::NoStore, true];
-        yield 'NoTransform is request directive' => [CacheDirective::NoTransform, true];
-        yield 'OnlyIfCached is request directive' => [CacheDirective::OnlyIfCached, true];
-        yield 'Private is not request directive' => [CacheDirective::Private, false];
-        yield 'ProxyRevalidate is not request directive' => [CacheDirective::ProxyRevalidate, false];
-        yield 'Public is not request directive' => [CacheDirective::Public, false];
-        yield 'SMaxage is not request directive' => [CacheDirective::SMaxage, false];
-        yield 'StaleIfError is request directive' => [CacheDirective::StaleIfError, true];
-        yield 'StaleWhileRevalidate is not request directive' => [CacheDirective::StaleWhileRevalidate, false];
-        yield 'Immutable is not request directive' => [CacheDirective::Immutable, false];
+        yield 'MAX_AGE is request directive' => [CacheDirective::MAX_AGE, true];
+        yield 'MAX_STALE is request directive' => [CacheDirective::MAX_STALE, true];
+        yield 'MIN_FRESH is request directive' => [CacheDirective::MIN_FRESH, true];
+        yield 'MUST_REVALIDATE is not request directive' => [CacheDirective::MUST_REVALIDATE, false];
+        yield 'MUST_UNDERSTAND is not request directive' => [CacheDirective::MUST_UNDERSTAND, false];
+        yield 'NO_CACHE is request directive' => [CacheDirective::NO_CACHE, true];
+        yield 'NO_STORE is request directive' => [CacheDirective::NO_STORE, true];
+        yield 'NO_TRANSFORM is request directive' => [CacheDirective::NO_TRANSFORM, true];
+        yield 'ONLY_IF_CACHED is request directive' => [CacheDirective::ONLY_IF_CACHED, true];
+        yield 'PRIVATE is not request directive' => [CacheDirective::PRIVATE, false];
+        yield 'PROXY_REVALIDATE is not request directive' => [CacheDirective::PROXY_REVALIDATE, false];
+        yield 'PUBLIC is not request directive' => [CacheDirective::PUBLIC, false];
+        yield 'S_MAXAGE is not request directive' => [CacheDirective::S_MAXAGE, false];
+        yield 'STALE_IF_ERROR is request directive' => [CacheDirective::STALE_IF_ERROR, true];
+        yield 'STALE_WHILE_REVALIDATE is not request directive' => [CacheDirective::STALE_WHILE_REVALIDATE, false];
+        yield 'IMMUTABLE is not request directive' => [CacheDirective::IMMUTABLE, false];
     }
 
     /**
@@ -111,22 +111,22 @@ class CacheDirectiveTest extends TestCase
      */
     public static function isResponseDirectiveProvider(): iterable
     {
-        yield 'MaxAge is response directive' => [CacheDirective::MaxAge, true];
-        yield 'MaxStale is not response directive' => [CacheDirective::MaxStale, false];
-        yield 'MinFresh is not response directive' => [CacheDirective::MinFresh, false];
-        yield 'MustRevalidate is response directive' => [CacheDirective::MustRevalidate, true];
-        yield 'MustUnderstand is response directive' => [CacheDirective::MustUnderstand, true];
-        yield 'NoCache is response directive' => [CacheDirective::NoCache, true];
-        yield 'NoStore is response directive' => [CacheDirective::NoStore, true];
-        yield 'NoTransform is response directive' => [CacheDirective::NoTransform, true];
-        yield 'OnlyIfCached is not response directive' => [CacheDirective::OnlyIfCached, false];
-        yield 'Private is response directive' => [CacheDirective::Private, true];
-        yield 'ProxyRevalidate is response directive' => [CacheDirective::ProxyRevalidate, true];
-        yield 'Public is response directive' => [CacheDirective::Public, true];
-        yield 'SMaxage is response directive' => [CacheDirective::SMaxage, true];
-        yield 'StaleIfError is response directive' => [CacheDirective::StaleIfError, true];
-        yield 'StaleWhileRevalidate is response directive' => [CacheDirective::StaleWhileRevalidate, true];
-        yield 'Immutable is response directive' => [CacheDirective::Immutable, true];
+        yield 'MAX_AGE is response directive' => [CacheDirective::MAX_AGE, true];
+        yield 'MAX_STALE is not response directive' => [CacheDirective::MAX_STALE, false];
+        yield 'MIN_FRESH is not response directive' => [CacheDirective::MIN_FRESH, false];
+        yield 'MUST_REVALIDATE is response directive' => [CacheDirective::MUST_REVALIDATE, true];
+        yield 'MUST_UNDERSTAND is response directive' => [CacheDirective::MUST_UNDERSTAND, true];
+        yield 'NO_CACHE is response directive' => [CacheDirective::NO_CACHE, true];
+        yield 'NO_STORE is response directive' => [CacheDirective::NO_STORE, true];
+        yield 'NO_TRANSFORM is response directive' => [CacheDirective::NO_TRANSFORM, true];
+        yield 'ONLY_IF_CACHED is not response directive' => [CacheDirective::ONLY_IF_CACHED, false];
+        yield 'PRIVATE is response directive' => [CacheDirective::PRIVATE, true];
+        yield 'PROXY_REVALIDATE is response directive' => [CacheDirective::PROXY_REVALIDATE, true];
+        yield 'PUBLIC is response directive' => [CacheDirective::PUBLIC, true];
+        yield 'S_MAXAGE is response directive' => [CacheDirective::S_MAXAGE, true];
+        yield 'STALE_IF_ERROR is response directive' => [CacheDirective::STALE_IF_ERROR, true];
+        yield 'STALE_WHILE_REVALIDATE is response directive' => [CacheDirective::STALE_WHILE_REVALIDATE, true];
+        yield 'IMMUTABLE is response directive' => [CacheDirective::IMMUTABLE, true];
     }
 
     /**
