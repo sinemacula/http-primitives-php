@@ -11,7 +11,8 @@ composer check                # Run qlty static analysis (PHPStan level 8, PHP-C
 composer check -- --all --no-cache --fix  # Checks with auto-fix
 composer format               # Format code via qlty
 composer test                 # Run tests (Paratest, parallel execution)
-composer test-coverage        # Run tests with clover coverage report
+composer test:coverage        # Run tests with clover coverage report
+composer test:mutation        # Run the Infection mutation gate (min MSI 90)
 
 # Single test file
 vendor/bin/phpunit tests/Unit/SomeTest.php
