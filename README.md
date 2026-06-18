@@ -2,6 +2,7 @@
 
 [![Latest Stable Version](https://img.shields.io/packagist/v/sinemacula/http-primitives-php.svg)](https://packagist.org/packages/sinemacula/http-primitives-php)
 [![Build Status](https://github.com/sinemacula/http-primitives-php/actions/workflows/tests.yml/badge.svg?branch=master)](https://github.com/sinemacula/http-primitives-php/actions/workflows/tests.yml)
+[![Quality Gates](https://github.com/sinemacula/http-primitives-php/actions/workflows/quality-gates.yml/badge.svg?branch=master)](https://github.com/sinemacula/http-primitives-php/actions/workflows/quality-gates.yml)
 [![Maintainability](https://qlty.sh/gh/sinemacula/projects/http-primitives-php/maintainability.svg)](https://qlty.sh/gh/sinemacula/projects/http-primitives-php)
 [![Code Coverage](https://qlty.sh/gh/sinemacula/projects/http-primitives-php/coverage.svg)](https://qlty.sh/gh/sinemacula/projects/http-primitives-php)
 [![Total Downloads](https://img.shields.io/packagist/dt/sinemacula/http-primitives-php.svg)](https://packagist.org/packages/sinemacula/http-primitives-php)
@@ -69,21 +70,35 @@ MediaType::APPLICATION_JSON->getExtension();  // 'json'
 MediaType::TEXT_CSV->withCharset(Charset::UTF_8); // 'text/csv; charset=utf-8'
 ```
 
+## Requirements
+
+- PHP 8.3+
+
 ## Testing
 
 ```bash
-composer test
-composer test-coverage
-composer check
+composer test                # PHPUnit suite in parallel via Paratest
+composer test:coverage       # suite with Clover coverage output
+composer test:mutation       # Infection mutation gate (min MSI 90)
+composer test:mutation:full  # full mutation suite without thresholds
+composer check               # static analysis and lint via qlty
+composer format              # format via qlty
+composer smells              # duplication / complexity smells via qlty
 ```
+
+## Changelog
+
+See [CHANGELOG.md](CHANGELOG.md) for a list of notable changes.
 
 ## Contributing
 
-Contributions are welcome via GitHub pull requests.
+Contributions are welcome. Please read [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on branching, commits, code
+quality, and pull requests.
 
 ## Security
 
-If you discover a security issue, please contact Sine Macula directly rather than opening a public issue.
+If you discover a security vulnerability, please report it responsibly. See [SECURITY.md](SECURITY.md) for the
+disclosure policy and contact details.
 
 ## License
 
