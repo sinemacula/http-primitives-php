@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Tests\Unit\Enums;
 
 use PHPUnit\Framework\Attributes\CoversClass;
@@ -16,8 +18,18 @@ use SineMacula\Http\Enums\HttpMethod;
  * @internal
  */
 #[CoversClass(HttpMethod::class)]
-class HttpMethodTest extends TestCase
+final class HttpMethodTest extends TestCase
 {
+    /**
+     * Test that the enum contains exactly 9 cases.
+     *
+     * @return void
+     */
+    public function testCaseCount(): void
+    {
+        self::assertCount(9, HttpMethod::cases());
+    }
+
     /**
      * Provide each HttpMethod case with its expected backing value.
      *
@@ -34,6 +46,19 @@ class HttpMethodTest extends TestCase
         yield 'CONNECT' => [HttpMethod::CONNECT, 'CONNECT'];
         yield 'OPTIONS' => [HttpMethod::OPTIONS, 'OPTIONS'];
         yield 'TRACE' => [HttpMethod::TRACE, 'TRACE'];
+    }
+
+    /**
+     * Test that each case has the correct string backing value.
+     *
+     * @param  \SineMacula\Http\Enums\HttpMethod  $case
+     * @param  string  $expectedValue
+     * @return void
+     */
+    #[DataProvider('backingValuesProvider')]
+    public function testBackingValues(HttpMethod $case, string $expectedValue): void
+    {
+        self::assertSame($expectedValue, $case->value);
     }
 
     /**
@@ -55,6 +80,19 @@ class HttpMethodTest extends TestCase
     }
 
     /**
+     * Test that isSafe returns the correct boolean for each case.
+     *
+     * @param  \SineMacula\Http\Enums\HttpMethod  $case
+     * @param  bool  $expected
+     * @return void
+     */
+    #[DataProvider('safeMethodsProvider')]
+    public function testIsSafe(HttpMethod $case, bool $expected): void
+    {
+        self::assertSame($expected, $case->isSafe());
+    }
+
+    /**
      * Provide each HttpMethod case with its expected idempotency status.
      *
      * @return iterable<string, array{0: \SineMacula\Http\Enums\HttpMethod, 1: bool}>
@@ -73,42 +111,6 @@ class HttpMethodTest extends TestCase
     }
 
     /**
-     * Test that the enum contains exactly 9 cases.
-     *
-     * @return void
-     */
-    public function testCaseCount(): void
-    {
-        static::assertCount(9, HttpMethod::cases());
-    }
-
-    /**
-     * Test that each case has the correct string backing value.
-     *
-     * @param  \SineMacula\Http\Enums\HttpMethod  $case
-     * @param  string  $expectedValue
-     * @return void
-     */
-    #[DataProvider('backingValuesProvider')]
-    public function testBackingValues(HttpMethod $case, string $expectedValue): void
-    {
-        static::assertSame($expectedValue, $case->value);
-    }
-
-    /**
-     * Test that isSafe returns the correct boolean for each case.
-     *
-     * @param  \SineMacula\Http\Enums\HttpMethod  $case
-     * @param  bool  $expected
-     * @return void
-     */
-    #[DataProvider('safeMethodsProvider')]
-    public function testIsSafe(HttpMethod $case, bool $expected): void
-    {
-        static::assertSame($expected, $case->isSafe());
-    }
-
-    /**
      * Test that isIdempotent returns the correct boolean for each case.
      *
      * @param  \SineMacula\Http\Enums\HttpMethod  $case
@@ -118,7 +120,7 @@ class HttpMethodTest extends TestCase
     #[DataProvider('idempotentMethodsProvider')]
     public function testIsIdempotent(HttpMethod $case, bool $expected): void
     {
-        static::assertSame($expected, $case->isIdempotent());
+        self::assertSame($expected, $case->isIdempotent());
     }
 
     /**
@@ -128,9 +130,9 @@ class HttpMethodTest extends TestCase
      */
     public function testGetVerb(): void
     {
-        static::assertSame('GET', HttpMethod::GET->getVerb());
-        static::assertSame('POST', HttpMethod::POST->getVerb());
-        static::assertSame('DELETE', HttpMethod::DELETE->getVerb());
+        self::assertSame('GET', HttpMethod::GET->getVerb());
+        self::assertSame('POST', HttpMethod::POST->getVerb());
+        self::assertSame('DELETE', HttpMethod::DELETE->getVerb());
     }
 
     /**
@@ -140,12 +142,12 @@ class HttpMethodTest extends TestCase
      */
     public function testFromValueRoundTrip(): void
     {
-        static::assertSame(HttpMethod::GET, HttpMethod::from('GET'));
-        static::assertSame(HttpMethod::HEAD, HttpMethod::from('HEAD'));
-        static::assertSame(HttpMethod::POST, HttpMethod::from('POST'));
-        static::assertSame(HttpMethod::PUT, HttpMethod::from('PUT'));
-        static::assertSame(HttpMethod::DELETE, HttpMethod::from('DELETE'));
-        static::assertSame(HttpMethod::OPTIONS, HttpMethod::from('OPTIONS'));
+        self::assertSame(HttpMethod::GET, HttpMethod::from('GET'));
+        self::assertSame(HttpMethod::HEAD, HttpMethod::from('HEAD'));
+        self::assertSame(HttpMethod::POST, HttpMethod::from('POST'));
+        self::assertSame(HttpMethod::PUT, HttpMethod::from('PUT'));
+        self::assertSame(HttpMethod::DELETE, HttpMethod::from('DELETE'));
+        self::assertSame(HttpMethod::OPTIONS, HttpMethod::from('OPTIONS'));
     }
 
     /**
@@ -155,6 +157,6 @@ class HttpMethodTest extends TestCase
      */
     public function testTryFromReturnsNullForUnknownValue(): void
     {
-        static::assertNull(HttpMethod::tryFrom('INVALID'));
+        self::assertNull(HttpMethod::tryFrom('INVALID'));
     }
 }

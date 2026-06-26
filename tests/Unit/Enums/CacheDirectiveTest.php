@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Tests\Unit\Enums;
 
 use PHPUnit\Framework\Attributes\CoversClass;
@@ -16,7 +18,7 @@ use SineMacula\Http\Enums\CacheDirective;
  * @internal
  */
 #[CoversClass(CacheDirective::class)]
-class CacheDirectiveTest extends TestCase
+final class CacheDirectiveTest extends TestCase
 {
     /**
      * Test that CacheDirective has the expected number of cases.
@@ -25,7 +27,7 @@ class CacheDirectiveTest extends TestCase
      */
     public function testCaseCount(): void
     {
-        static::assertCount(16, CacheDirective::cases());
+        self::assertCount(16, CacheDirective::cases());
     }
 
     /**
@@ -63,7 +65,7 @@ class CacheDirectiveTest extends TestCase
     #[DataProvider('backingValueProvider')]
     public function testBackingValues(CacheDirective $case, string $expectedValue): void
     {
-        static::assertSame($expectedValue, $case->value);
+        self::assertSame($expectedValue, $case->value);
     }
 
     /**
@@ -101,7 +103,7 @@ class CacheDirectiveTest extends TestCase
     #[DataProvider('isRequestDirectiveProvider')]
     public function testIsRequestDirective(CacheDirective $case, bool $expected): void
     {
-        static::assertSame($expected, $case->isRequestDirective());
+        self::assertSame($expected, $case->isRequestDirective());
     }
 
     /**
@@ -139,7 +141,7 @@ class CacheDirectiveTest extends TestCase
     #[DataProvider('isResponseDirectiveProvider')]
     public function testIsResponseDirective(CacheDirective $case, bool $expected): void
     {
-        static::assertSame($expected, $case->isResponseDirective());
+        self::assertSame($expected, $case->isResponseDirective());
     }
 
     /**
@@ -149,6 +151,6 @@ class CacheDirectiveTest extends TestCase
      */
     public function testTryFromReturnsNullForUnknownValue(): void
     {
-        static::assertNull(CacheDirective::tryFrom('unknown-directive'));
+        self::assertNull(CacheDirective::tryFrom('unknown-directive'));
     }
 }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace SineMacula\Http\Enums;
 
 /**
@@ -94,6 +96,57 @@ enum MediaType: string
     case FONT_WOFF2 = 'font/woff2';
     case FONT_TTF   = 'font/ttf';
     case FONT_OTF   = 'font/otf';
+
+    /**
+     * The common file extensions keyed by case name (null when none applies).
+     *
+     * @var array<string, string|null>
+     */
+    private const array EXTENSIONS = [
+        'APPLICATION_JSON'            => 'json',
+        'APPLICATION_XML'             => 'xml',
+        'APPLICATION_PDF'             => 'pdf',
+        'APPLICATION_ZIP'             => 'zip',
+        'APPLICATION_GZIP'            => 'gz',
+        'APPLICATION_OCTET_STREAM'    => 'bin',
+        'APPLICATION_FORM_URLENCODED' => null,
+        'APPLICATION_JAVASCRIPT'      => 'js',
+        'APPLICATION_LD_JSON'         => 'jsonld',
+        'APPLICATION_SQL'             => 'sql',
+        'APPLICATION_GRAPHQL'         => 'graphql',
+        'APPLICATION_YAML'            => 'yaml',
+        'APPLICATION_MSGPACK'         => 'msgpack',
+        'TEXT_PLAIN'                  => 'txt',
+        'TEXT_HTML'                   => 'html',
+        'TEXT_CSS'                    => 'css',
+        'TEXT_CSV'                    => 'csv',
+        'TEXT_XML'                    => 'xml',
+        'TEXT_MARKDOWN'               => 'md',
+        'TEXT_CALENDAR'               => 'ics',
+        'TEXT_JAVASCRIPT'             => 'js',
+        'TEXT_EVENT_STREAM'           => null,
+        'MULTIPART_FORM_DATA'         => null,
+        'MULTIPART_BYTE_RANGES'       => null,
+        'MULTIPART_MIXED'             => null,
+        'IMAGE_PNG'                   => 'png',
+        'IMAGE_JPEG'                  => 'jpg',
+        'IMAGE_GIF'                   => 'gif',
+        'IMAGE_WEBP'                  => 'webp',
+        'IMAGE_SVG_XML'               => 'svg',
+        'IMAGE_AVIF'                  => 'avif',
+        'IMAGE_ICO'                   => 'ico',
+        'AUDIO_MPEG'                  => 'mp3',
+        'AUDIO_OGG'                   => 'ogg',
+        'AUDIO_WAV'                   => 'wav',
+        'AUDIO_WEBM'                  => 'weba',
+        'VIDEO_MP4'                   => 'mp4',
+        'VIDEO_WEBM'                  => 'webm',
+        'VIDEO_OGG'                   => 'ogv',
+        'FONT_WOFF'                   => 'woff',
+        'FONT_WOFF2'                  => 'woff2',
+        'FONT_TTF'                    => 'ttf',
+        'FONT_OTF'                    => 'otf',
+    ];
 
     /*
     |---------------------------------------------------------------------------
@@ -199,50 +252,6 @@ enum MediaType: string
      */
     public function getExtension(): ?string
     {
-        return match ($this) {
-            self::APPLICATION_JSON            => 'json',
-            self::APPLICATION_XML             => 'xml',
-            self::APPLICATION_PDF             => 'pdf',
-            self::APPLICATION_ZIP             => 'zip',
-            self::APPLICATION_GZIP            => 'gz',
-            self::APPLICATION_OCTET_STREAM    => 'bin',
-            self::APPLICATION_FORM_URLENCODED => null,
-            self::APPLICATION_JAVASCRIPT      => 'js',
-            self::APPLICATION_LD_JSON         => 'jsonld',
-            self::APPLICATION_SQL             => 'sql',
-            self::APPLICATION_GRAPHQL         => 'graphql',
-            self::APPLICATION_YAML            => 'yaml',
-            self::APPLICATION_MSGPACK         => 'msgpack',
-            self::TEXT_PLAIN                  => 'txt',
-            self::TEXT_HTML                   => 'html',
-            self::TEXT_CSS                    => 'css',
-            self::TEXT_CSV                    => 'csv',
-            self::TEXT_XML                    => 'xml',
-            self::TEXT_MARKDOWN               => 'md',
-            self::TEXT_CALENDAR               => 'ics',
-            self::TEXT_JAVASCRIPT             => 'js',
-            self::TEXT_EVENT_STREAM           => null,
-            self::MULTIPART_FORM_DATA         => null,
-            self::MULTIPART_BYTE_RANGES       => null,
-            self::MULTIPART_MIXED             => null,
-            self::IMAGE_PNG                   => 'png',
-            self::IMAGE_JPEG                  => 'jpg',
-            self::IMAGE_GIF                   => 'gif',
-            self::IMAGE_WEBP                  => 'webp',
-            self::IMAGE_SVG_XML               => 'svg',
-            self::IMAGE_AVIF                  => 'avif',
-            self::IMAGE_ICO                   => 'ico',
-            self::AUDIO_MPEG                  => 'mp3',
-            self::AUDIO_OGG                   => 'ogg',
-            self::AUDIO_WAV                   => 'wav',
-            self::AUDIO_WEBM                  => 'weba',
-            self::VIDEO_MP4                   => 'mp4',
-            self::VIDEO_WEBM                  => 'webm',
-            self::VIDEO_OGG                   => 'ogv',
-            self::FONT_WOFF                   => 'woff',
-            self::FONT_WOFF2                  => 'woff2',
-            self::FONT_TTF                    => 'ttf',
-            self::FONT_OTF                    => 'otf',
-        };
+        return self::EXTENSIONS[$this->name];
     }
 }

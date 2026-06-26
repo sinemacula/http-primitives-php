@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Tests\Unit\Enums;
 
 use PHPUnit\Framework\Attributes\CoversClass;
@@ -16,7 +18,7 @@ use SineMacula\Http\Enums\AuthScheme;
  * @internal
  */
 #[CoversClass(AuthScheme::class)]
-class AuthSchemeTest extends TestCase
+final class AuthSchemeTest extends TestCase
 {
     /**
      * Test that AuthScheme has the expected number of cases.
@@ -25,7 +27,7 @@ class AuthSchemeTest extends TestCase
      */
     public function testCaseCount(): void
     {
-        static::assertCount(3, AuthScheme::cases());
+        self::assertCount(3, AuthScheme::cases());
     }
 
     /**
@@ -50,7 +52,7 @@ class AuthSchemeTest extends TestCase
     #[DataProvider('backingValueProvider')]
     public function testBackingValues(AuthScheme $case, string $expectedValue): void
     {
-        static::assertSame($expectedValue, $case->value);
+        self::assertSame($expectedValue, $case->value);
     }
 
     /**
@@ -60,9 +62,9 @@ class AuthSchemeTest extends TestCase
      */
     public function testFromValueRoundTrip(): void
     {
-        static::assertSame(AuthScheme::BASIC, AuthScheme::from('Basic'));
-        static::assertSame(AuthScheme::BEARER, AuthScheme::from('Bearer'));
-        static::assertSame(AuthScheme::DIGEST, AuthScheme::from('Digest'));
+        self::assertSame(AuthScheme::BASIC, AuthScheme::from('Basic'));
+        self::assertSame(AuthScheme::BEARER, AuthScheme::from('Bearer'));
+        self::assertSame(AuthScheme::DIGEST, AuthScheme::from('Digest'));
     }
 
     /**
@@ -72,6 +74,6 @@ class AuthSchemeTest extends TestCase
      */
     public function testTryFromReturnsNullForUnknownValue(): void
     {
-        static::assertNull(AuthScheme::tryFrom('OAuth'));
+        self::assertNull(AuthScheme::tryFrom('OAuth'));
     }
 }
