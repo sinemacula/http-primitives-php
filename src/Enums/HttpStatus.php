@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace SineMacula\Http\Enums;
 
 /**
@@ -41,22 +43,13 @@ enum HttpStatus: int
     | Redirection messages (3xx)
     |---------------------------------------------------------------------------
     */
-    case MULTIPLE_CHOICES  = 300;
-    case MOVED_PERMANENTLY = 301;
-    case FOUND             = 302;
-    case SEE_OTHER         = 303;
-    case NOT_MODIFIED      = 304;
-
-    /**
-     * @deprecated
-     */
-    case USE_PROXY = 305;
-
-    /**
-     * @deprecated
-     */
-    case UNUSED = 306;
-
+    case MULTIPLE_CHOICES   = 300;
+    case MOVED_PERMANENTLY  = 301;
+    case FOUND              = 302;
+    case SEE_OTHER          = 303;
+    case NOT_MODIFIED       = 304;
+    case USE_PROXY          = 305;
+    case UNUSED             = 306;
     case TEMPORARY_REDIRECT = 307;
     case PERMANENT_REDIRECT = 308;
 
@@ -100,20 +93,88 @@ enum HttpStatus: int
     | Server error responses (5xx)
     |---------------------------------------------------------------------------
     */
-    case INTERNAL_SERVER_ERROR      = 500;
-    case NOT_IMPLEMENTED            = 501;
-    case BAD_GATEWAY                = 502;
-    case SERVICE_UNAVAILABLE        = 503;
-    case GATEWAY_TIMEOUT            = 504;
-    case HTTP_VERSION_NOT_SUPPORTED = 505;
-    case VARIANT_ALSO_NEGOTIATES    = 506;
-    case INSUFFICIENT_STORAGE       = 507;
-    case LOOP_DETECTED              = 508;
-
-    /** @deprecated */
-    case NOT_EXTENDED = 510;
-
+    case INTERNAL_SERVER_ERROR           = 500;
+    case NOT_IMPLEMENTED                 = 501;
+    case BAD_GATEWAY                     = 502;
+    case SERVICE_UNAVAILABLE             = 503;
+    case GATEWAY_TIMEOUT                 = 504;
+    case HTTP_VERSION_NOT_SUPPORTED      = 505;
+    case VARIANT_ALSO_NEGOTIATES         = 506;
+    case INSUFFICIENT_STORAGE            = 507;
+    case LOOP_DETECTED                   = 508;
+    case NOT_EXTENDED                    = 510;
     case NETWORK_AUTHENTICATION_REQUIRED = 511;
+
+    /**
+     * The IANA/RFC 9110 reason phrases keyed by case name.
+     *
+     * @var array<string, string>
+     */
+    private const array REASON_PHRASES = [
+        'CONTINUE'                        => 'Continue',
+        'SWITCHING_PROTOCOLS'             => 'Switching Protocols',
+        'PROCESSING'                      => 'Processing',
+        'EARLY_HINTS'                     => 'Early Hints',
+        'OK'                              => 'OK',
+        'CREATED'                         => 'Created',
+        'ACCEPTED'                        => 'Accepted',
+        'NON_AUTHORITATIVE_INFORMATION'   => 'Non-Authoritative Information',
+        'NO_CONTENT'                      => 'No Content',
+        'RESET_CONTENT'                   => 'Reset Content',
+        'PARTIAL_CONTENT'                 => 'Partial Content',
+        'MULTI_STATUS'                    => 'Multi-Status',
+        'ALREADY_REPORTED'                => 'Already Reported',
+        'IM_USED'                         => 'IM Used',
+        'MULTIPLE_CHOICES'                => 'Multiple Choices',
+        'MOVED_PERMANENTLY'               => 'Moved Permanently',
+        'FOUND'                           => 'Found',
+        'SEE_OTHER'                       => 'See Other',
+        'NOT_MODIFIED'                    => 'Not Modified',
+        'USE_PROXY'                       => 'Use Proxy',
+        'UNUSED'                          => 'unused',
+        'TEMPORARY_REDIRECT'              => 'Temporary Redirect',
+        'PERMANENT_REDIRECT'              => 'Permanent Redirect',
+        'BAD_REQUEST'                     => 'Bad Request',
+        'UNAUTHORIZED'                    => 'Unauthorized',
+        'PAYMENT_REQUIRED'                => 'Payment Required',
+        'FORBIDDEN'                       => 'Forbidden',
+        'NOT_FOUND'                       => 'Not Found',
+        'METHOD_NOT_ALLOWED'              => 'Method Not Allowed',
+        'NOT_ACCEPTABLE'                  => 'Not Acceptable',
+        'PROXY_AUTHENTICATION_REQUIRED'   => 'Proxy Authentication Required',
+        'REQUEST_TIMEOUT'                 => 'Request Timeout',
+        'CONFLICT'                        => 'Conflict',
+        'GONE'                            => 'Gone',
+        'LENGTH_REQUIRED'                 => 'Length Required',
+        'PRECONDITION_FAILED'             => 'Precondition Failed',
+        'CONTENT_TOO_LARGE'               => 'Content Too Large',
+        'URI_TOO_LONG'                    => 'URI Too Long',
+        'UNSUPPORTED_MEDIA_TYPE'          => 'Unsupported Media Type',
+        'RANGE_NOT_SATISFIABLE'           => 'Range Not Satisfiable',
+        'EXPECTATION_FAILED'              => 'Expectation Failed',
+        'IM_A_TEAPOT'                     => 'I\'m a Teapot',
+        'MISDIRECTED_REQUEST'             => 'Misdirected Request',
+        'UNPROCESSABLE_CONTENT'           => 'Unprocessable Content',
+        'LOCKED'                          => 'Locked',
+        'FAILED_DEPENDENCY'               => 'Failed Dependency',
+        'TOO_EARLY'                       => 'Too Early',
+        'UPGRADE_REQUIRED'                => 'Upgrade Required',
+        'PRECONDITION_REQUIRED'           => 'Precondition Required',
+        'TOO_MANY_REQUESTS'               => 'Too Many Requests',
+        'REQUEST_HEADER_FIELDS_TOO_LARGE' => 'Request Header Fields Too Large',
+        'UNAVAILABLE_FOR_LEGAL_REASONS'   => 'Unavailable For Legal Reasons',
+        'INTERNAL_SERVER_ERROR'           => 'Internal Server Error',
+        'NOT_IMPLEMENTED'                 => 'Not Implemented',
+        'BAD_GATEWAY'                     => 'Bad Gateway',
+        'SERVICE_UNAVAILABLE'             => 'Service Unavailable',
+        'GATEWAY_TIMEOUT'                 => 'Gateway Timeout',
+        'HTTP_VERSION_NOT_SUPPORTED'      => 'HTTP Version Not Supported',
+        'VARIANT_ALSO_NEGOTIATES'         => 'Variant Also Negotiates',
+        'INSUFFICIENT_STORAGE'            => 'Insufficient Storage',
+        'LOOP_DETECTED'                   => 'Loop Detected',
+        'NOT_EXTENDED'                    => 'Not Extended',
+        'NETWORK_AUTHENTICATION_REQUIRED' => 'Network Authentication Required',
+    ];
 
     /*
     |---------------------------------------------------------------------------
@@ -198,70 +259,6 @@ enum HttpStatus: int
      */
     public function getReasonPhrase(): string
     {
-        return match ($this) {
-            self::CONTINUE                        => 'Continue',
-            self::SWITCHING_PROTOCOLS             => 'Switching Protocols',
-            self::PROCESSING                      => 'Processing',
-            self::EARLY_HINTS                     => 'Early Hints',
-            self::OK                              => 'OK',
-            self::CREATED                         => 'Created',
-            self::ACCEPTED                        => 'Accepted',
-            self::NON_AUTHORITATIVE_INFORMATION   => 'Non-Authoritative Information',
-            self::NO_CONTENT                      => 'No Content',
-            self::RESET_CONTENT                   => 'Reset Content',
-            self::PARTIAL_CONTENT                 => 'Partial Content',
-            self::MULTI_STATUS                    => 'Multi-Status',
-            self::ALREADY_REPORTED                => 'Already Reported',
-            self::IM_USED                         => 'IM Used',
-            self::MULTIPLE_CHOICES                => 'Multiple Choices',
-            self::MOVED_PERMANENTLY               => 'Moved Permanently',
-            self::FOUND                           => 'Found',
-            self::SEE_OTHER                       => 'See Other',
-            self::NOT_MODIFIED                    => 'Not Modified',
-            self::USE_PROXY                       => 'Use Proxy',
-            self::UNUSED                          => 'unused',
-            self::TEMPORARY_REDIRECT              => 'Temporary Redirect',
-            self::PERMANENT_REDIRECT              => 'Permanent Redirect',
-            self::BAD_REQUEST                     => 'Bad Request',
-            self::UNAUTHORIZED                    => 'Unauthorized',
-            self::PAYMENT_REQUIRED                => 'Payment Required',
-            self::FORBIDDEN                       => 'Forbidden',
-            self::NOT_FOUND                       => 'Not Found',
-            self::METHOD_NOT_ALLOWED              => 'Method Not Allowed',
-            self::NOT_ACCEPTABLE                  => 'Not Acceptable',
-            self::PROXY_AUTHENTICATION_REQUIRED   => 'Proxy Authentication Required',
-            self::REQUEST_TIMEOUT                 => 'Request Timeout',
-            self::CONFLICT                        => 'Conflict',
-            self::GONE                            => 'Gone',
-            self::LENGTH_REQUIRED                 => 'Length Required',
-            self::PRECONDITION_FAILED             => 'Precondition Failed',
-            self::CONTENT_TOO_LARGE               => 'Content Too Large',
-            self::URI_TOO_LONG                    => 'URI Too Long',
-            self::UNSUPPORTED_MEDIA_TYPE          => 'Unsupported Media Type',
-            self::RANGE_NOT_SATISFIABLE           => 'Range Not Satisfiable',
-            self::EXPECTATION_FAILED              => 'Expectation Failed',
-            self::IM_A_TEAPOT                     => 'I\'m a Teapot',
-            self::MISDIRECTED_REQUEST             => 'Misdirected Request',
-            self::UNPROCESSABLE_CONTENT           => 'Unprocessable Content',
-            self::LOCKED                          => 'Locked',
-            self::FAILED_DEPENDENCY               => 'Failed Dependency',
-            self::TOO_EARLY                       => 'Too Early',
-            self::UPGRADE_REQUIRED                => 'Upgrade Required',
-            self::PRECONDITION_REQUIRED           => 'Precondition Required',
-            self::TOO_MANY_REQUESTS               => 'Too Many Requests',
-            self::REQUEST_HEADER_FIELDS_TOO_LARGE => 'Request Header Fields Too Large',
-            self::UNAVAILABLE_FOR_LEGAL_REASONS   => 'Unavailable For Legal Reasons',
-            self::INTERNAL_SERVER_ERROR           => 'Internal Server Error',
-            self::NOT_IMPLEMENTED                 => 'Not Implemented',
-            self::BAD_GATEWAY                     => 'Bad Gateway',
-            self::SERVICE_UNAVAILABLE             => 'Service Unavailable',
-            self::GATEWAY_TIMEOUT                 => 'Gateway Timeout',
-            self::HTTP_VERSION_NOT_SUPPORTED      => 'HTTP Version Not Supported',
-            self::VARIANT_ALSO_NEGOTIATES         => 'Variant Also Negotiates',
-            self::INSUFFICIENT_STORAGE            => 'Insufficient Storage',
-            self::LOOP_DETECTED                   => 'Loop Detected',
-            self::NOT_EXTENDED                    => 'Not Extended',
-            self::NETWORK_AUTHENTICATION_REQUIRED => 'Network Authentication Required',
-        };
+        return self::REASON_PHRASES[$this->name];
     }
 }

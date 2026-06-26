@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Tests\Unit\Enums;
 
 use PHPUnit\Framework\Attributes\CoversClass;
@@ -16,7 +18,7 @@ use SineMacula\Http\Enums\HttpStatus;
  * @internal
  */
 #[CoversClass(HttpStatus::class)]
-class HttpStatusTest extends TestCase
+final class HttpStatusTest extends TestCase
 {
     /**
      * Test that the enum contains exactly 63 cases.
@@ -25,7 +27,7 @@ class HttpStatusTest extends TestCase
      */
     public function testCaseCount(): void
     {
-        static::assertCount(63, HttpStatus::cases());
+        self::assertCount(63, HttpStatus::cases());
     }
 
     /**
@@ -110,7 +112,7 @@ class HttpStatusTest extends TestCase
     #[DataProvider('backingValuesProvider')]
     public function testBackingValues(HttpStatus $case, int $expectedValue): void
     {
-        static::assertSame($expectedValue, $case->value);
+        self::assertSame($expectedValue, $case->value);
     }
 
     /**
@@ -138,7 +140,7 @@ class HttpStatusTest extends TestCase
     #[DataProvider('informationalProvider')]
     public function testIsInformational(HttpStatus $case, bool $expected): void
     {
-        static::assertSame($expected, $case->isInformational());
+        self::assertSame($expected, $case->isInformational());
     }
 
     /**
@@ -166,7 +168,7 @@ class HttpStatusTest extends TestCase
     #[DataProvider('successProvider')]
     public function testIsSuccess(HttpStatus $case, bool $expected): void
     {
-        static::assertSame($expected, $case->isSuccess());
+        self::assertSame($expected, $case->isSuccess());
     }
 
     /**
@@ -194,7 +196,7 @@ class HttpStatusTest extends TestCase
     #[DataProvider('redirectionProvider')]
     public function testIsRedirection(HttpStatus $case, bool $expected): void
     {
-        static::assertSame($expected, $case->isRedirection());
+        self::assertSame($expected, $case->isRedirection());
     }
 
     /**
@@ -222,7 +224,7 @@ class HttpStatusTest extends TestCase
     #[DataProvider('clientErrorProvider')]
     public function testIsClientError(HttpStatus $case, bool $expected): void
     {
-        static::assertSame($expected, $case->isClientError());
+        self::assertSame($expected, $case->isClientError());
     }
 
     /**
@@ -250,7 +252,7 @@ class HttpStatusTest extends TestCase
     #[DataProvider('serverErrorProvider')]
     public function testIsServerError(HttpStatus $case, bool $expected): void
     {
-        static::assertSame($expected, $case->isServerError());
+        self::assertSame($expected, $case->isServerError());
     }
 
     /**
@@ -353,7 +355,7 @@ class HttpStatusTest extends TestCase
     #[DataProvider('reasonPhraseProvider')]
     public function testGetReasonPhrase(HttpStatus $case, string $expectedPhrase): void
     {
-        static::assertSame($expectedPhrase, $case->getReasonPhrase());
+        self::assertSame($expectedPhrase, $case->getReasonPhrase());
     }
 
     /**
@@ -363,9 +365,9 @@ class HttpStatusTest extends TestCase
      */
     public function testGetCode(): void
     {
-        static::assertSame(200, HttpStatus::OK->getCode());
-        static::assertSame(404, HttpStatus::NOT_FOUND->getCode());
-        static::assertSame(500, HttpStatus::INTERNAL_SERVER_ERROR->getCode());
+        self::assertSame(200, HttpStatus::OK->getCode());
+        self::assertSame(404, HttpStatus::NOT_FOUND->getCode());
+        self::assertSame(500, HttpStatus::INTERNAL_SERVER_ERROR->getCode());
     }
 
     /**
@@ -375,10 +377,10 @@ class HttpStatusTest extends TestCase
      */
     public function testGetStatusLine(): void
     {
-        static::assertSame('200 OK', HttpStatus::OK->getStatusLine());
-        static::assertSame('404 Not Found', HttpStatus::NOT_FOUND->getStatusLine());
-        static::assertSame('500 Internal Server Error', HttpStatus::INTERNAL_SERVER_ERROR->getStatusLine());
-        static::assertSame('418 I\'m a Teapot', HttpStatus::IM_A_TEAPOT->getStatusLine());
+        self::assertSame('200 OK', HttpStatus::OK->getStatusLine());
+        self::assertSame('404 Not Found', HttpStatus::NOT_FOUND->getStatusLine());
+        self::assertSame('500 Internal Server Error', HttpStatus::INTERNAL_SERVER_ERROR->getStatusLine());
+        self::assertSame('418 I\'m a Teapot', HttpStatus::IM_A_TEAPOT->getStatusLine());
     }
 
     /**
@@ -388,12 +390,12 @@ class HttpStatusTest extends TestCase
      */
     public function testFromValueRoundTrip(): void
     {
-        static::assertSame(HttpStatus::OK, HttpStatus::from(200));
-        static::assertSame(HttpStatus::NOT_FOUND, HttpStatus::from(404));
-        static::assertSame(HttpStatus::INTERNAL_SERVER_ERROR, HttpStatus::from(500));
-        static::assertSame(HttpStatus::CONTINUE, HttpStatus::from(100));
-        static::assertSame(HttpStatus::MOVED_PERMANENTLY, HttpStatus::from(301));
-        static::assertSame(HttpStatus::IM_A_TEAPOT, HttpStatus::from(418));
+        self::assertSame(HttpStatus::OK, HttpStatus::from(200));
+        self::assertSame(HttpStatus::NOT_FOUND, HttpStatus::from(404));
+        self::assertSame(HttpStatus::INTERNAL_SERVER_ERROR, HttpStatus::from(500));
+        self::assertSame(HttpStatus::CONTINUE, HttpStatus::from(100));
+        self::assertSame(HttpStatus::MOVED_PERMANENTLY, HttpStatus::from(301));
+        self::assertSame(HttpStatus::IM_A_TEAPOT, HttpStatus::from(418));
     }
 
     /**
@@ -403,6 +405,6 @@ class HttpStatusTest extends TestCase
      */
     public function testTryFromReturnsNullForUnknownValue(): void
     {
-        static::assertNull(HttpStatus::tryFrom(999));
+        self::assertNull(HttpStatus::tryFrom(999));
     }
 }

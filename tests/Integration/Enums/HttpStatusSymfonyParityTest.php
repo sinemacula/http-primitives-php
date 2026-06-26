@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Tests\Integration\Enums;
 
 use PHPUnit\Framework\Attributes\CoversClass;
@@ -17,7 +19,7 @@ use Symfony\Component\HttpFoundation\Response;
  * @copyright   2026 Sine Macula Limited.
  */
 #[CoversClass(HttpStatus::class)]
-class HttpStatusSymfonyParityTest extends TestCase
+final class HttpStatusSymfonyParityTest extends TestCase
 {
     /**
      * Every Symfony Response::HTTP_* constant must have a matching HttpStatus
@@ -44,7 +46,7 @@ class HttpStatusSymfonyParityTest extends TestCase
 
             $case = HttpStatus::tryFrom($value);
 
-            static::assertNotNull(
+            self::assertNotNull(
                 $case,
                 sprintf(
                     'Symfony constant Response::%s = %d has no matching HttpStatus case.',
@@ -83,7 +85,7 @@ class HttpStatusSymfonyParityTest extends TestCase
         }
 
         foreach (HttpStatus::cases() as $case) {
-            static::assertArrayHasKey(
+            self::assertArrayHasKey(
                 $case->value,
                 $symfonyValues,
                 sprintf(

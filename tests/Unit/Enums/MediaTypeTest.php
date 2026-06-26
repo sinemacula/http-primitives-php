@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Tests\Unit\Enums;
 
 use PHPUnit\Framework\Attributes\CoversClass;
@@ -17,8 +19,18 @@ use SineMacula\Http\Enums\MediaType;
  * @internal
  */
 #[CoversClass(MediaType::class)]
-class MediaTypeTest extends TestCase
+final class MediaTypeTest extends TestCase
 {
+    /**
+     * Test the total number of enum cases.
+     *
+     * @return void
+     */
+    public function testCaseCount(): void
+    {
+        self::assertCount(43, MediaType::cases());
+    }
+
     /**
      * Provide each media type case with its expected backing value.
      *
@@ -75,6 +87,19 @@ class MediaTypeTest extends TestCase
     }
 
     /**
+     * Test that each case has the correct backing value.
+     *
+     * @param  \SineMacula\Http\Enums\MediaType  $case
+     * @param  string  $expectedValue
+     * @return void
+     */
+    #[DataProvider('backingValueProvider')]
+    public function testBackingValues(MediaType $case, string $expectedValue): void
+    {
+        self::assertSame($expectedValue, $case->value);
+    }
+
+    /**
      * Provide each media type case with its expected isApplication result.
      *
      * @return iterable<string, array{0: \SineMacula\Http\Enums\MediaType, 1: bool}>
@@ -84,6 +109,19 @@ class MediaTypeTest extends TestCase
         foreach (MediaType::cases() as $case) {
             yield $case->name => [$case, str_starts_with($case->value, 'application/')];
         }
+    }
+
+    /**
+     * Test that isApplication() returns true only for application types.
+     *
+     * @param  \SineMacula\Http\Enums\MediaType  $case
+     * @param  bool  $expected
+     * @return void
+     */
+    #[DataProvider('isApplicationProvider')]
+    public function testIsApplication(MediaType $case, bool $expected): void
+    {
+        self::assertSame($expected, $case->isApplication());
     }
 
     /**
@@ -99,6 +137,19 @@ class MediaTypeTest extends TestCase
     }
 
     /**
+     * Test that isText() returns true only for text types.
+     *
+     * @param  \SineMacula\Http\Enums\MediaType  $case
+     * @param  bool  $expected
+     * @return void
+     */
+    #[DataProvider('isTextProvider')]
+    public function testIsText(MediaType $case, bool $expected): void
+    {
+        self::assertSame($expected, $case->isText());
+    }
+
+    /**
      * Provide each media type case with its expected isMultipart result.
      *
      * @return iterable<string, array{0: \SineMacula\Http\Enums\MediaType, 1: bool}>
@@ -108,6 +159,19 @@ class MediaTypeTest extends TestCase
         foreach (MediaType::cases() as $case) {
             yield $case->name => [$case, str_starts_with($case->value, 'multipart/')];
         }
+    }
+
+    /**
+     * Test that isMultipart() returns true only for multipart types.
+     *
+     * @param  \SineMacula\Http\Enums\MediaType  $case
+     * @param  bool  $expected
+     * @return void
+     */
+    #[DataProvider('isMultipartProvider')]
+    public function testIsMultipart(MediaType $case, bool $expected): void
+    {
+        self::assertSame($expected, $case->isMultipart());
     }
 
     /**
@@ -123,6 +187,19 @@ class MediaTypeTest extends TestCase
     }
 
     /**
+     * Test that isImage() returns true only for image types.
+     *
+     * @param  \SineMacula\Http\Enums\MediaType  $case
+     * @param  bool  $expected
+     * @return void
+     */
+    #[DataProvider('isImageProvider')]
+    public function testIsImage(MediaType $case, bool $expected): void
+    {
+        self::assertSame($expected, $case->isImage());
+    }
+
+    /**
      * Provide each media type case with its expected isAudio result.
      *
      * @return iterable<string, array{0: \SineMacula\Http\Enums\MediaType, 1: bool}>
@@ -132,6 +209,19 @@ class MediaTypeTest extends TestCase
         foreach (MediaType::cases() as $case) {
             yield $case->name => [$case, str_starts_with($case->value, 'audio/')];
         }
+    }
+
+    /**
+     * Test that isAudio() returns true only for audio types.
+     *
+     * @param  \SineMacula\Http\Enums\MediaType  $case
+     * @param  bool  $expected
+     * @return void
+     */
+    #[DataProvider('isAudioProvider')]
+    public function testIsAudio(MediaType $case, bool $expected): void
+    {
+        self::assertSame($expected, $case->isAudio());
     }
 
     /**
@@ -147,6 +237,19 @@ class MediaTypeTest extends TestCase
     }
 
     /**
+     * Test that isVideo() returns true only for video types.
+     *
+     * @param  \SineMacula\Http\Enums\MediaType  $case
+     * @param  bool  $expected
+     * @return void
+     */
+    #[DataProvider('isVideoProvider')]
+    public function testIsVideo(MediaType $case, bool $expected): void
+    {
+        self::assertSame($expected, $case->isVideo());
+    }
+
+    /**
      * Provide each media type case with its expected isFont result.
      *
      * @return iterable<string, array{0: \SineMacula\Http\Enums\MediaType, 1: bool}>
@@ -156,6 +259,19 @@ class MediaTypeTest extends TestCase
         foreach (MediaType::cases() as $case) {
             yield $case->name => [$case, str_starts_with($case->value, 'font/')];
         }
+    }
+
+    /**
+     * Test that isFont() returns true only for font types.
+     *
+     * @param  \SineMacula\Http\Enums\MediaType  $case
+     * @param  bool  $expected
+     * @return void
+     */
+    #[DataProvider('isFontProvider')]
+    public function testIsFont(MediaType $case, bool $expected): void
+    {
+        self::assertSame($expected, $case->isFont());
     }
 
     /**
@@ -211,120 +327,6 @@ class MediaTypeTest extends TestCase
     }
 
     /**
-     * Test the total number of enum cases.
-     *
-     * @return void
-     */
-    public function testCaseCount(): void
-    {
-        static::assertCount(43, MediaType::cases());
-    }
-
-    /**
-     * Test that each case has the correct backing value.
-     *
-     * @param  \SineMacula\Http\Enums\MediaType  $case
-     * @param  string  $expectedValue
-     * @return void
-     */
-    #[DataProvider('backingValueProvider')]
-    public function testBackingValues(MediaType $case, string $expectedValue): void
-    {
-        static::assertSame($expectedValue, $case->value);
-    }
-
-    /**
-     * Test that isApplication() returns true only for application types.
-     *
-     * @param  \SineMacula\Http\Enums\MediaType  $case
-     * @param  bool  $expected
-     * @return void
-     */
-    #[DataProvider('isApplicationProvider')]
-    public function testIsApplication(MediaType $case, bool $expected): void
-    {
-        static::assertSame($expected, $case->isApplication());
-    }
-
-    /**
-     * Test that isText() returns true only for text types.
-     *
-     * @param  \SineMacula\Http\Enums\MediaType  $case
-     * @param  bool  $expected
-     * @return void
-     */
-    #[DataProvider('isTextProvider')]
-    public function testIsText(MediaType $case, bool $expected): void
-    {
-        static::assertSame($expected, $case->isText());
-    }
-
-    /**
-     * Test that isMultipart() returns true only for multipart types.
-     *
-     * @param  \SineMacula\Http\Enums\MediaType  $case
-     * @param  bool  $expected
-     * @return void
-     */
-    #[DataProvider('isMultipartProvider')]
-    public function testIsMultipart(MediaType $case, bool $expected): void
-    {
-        static::assertSame($expected, $case->isMultipart());
-    }
-
-    /**
-     * Test that isImage() returns true only for image types.
-     *
-     * @param  \SineMacula\Http\Enums\MediaType  $case
-     * @param  bool  $expected
-     * @return void
-     */
-    #[DataProvider('isImageProvider')]
-    public function testIsImage(MediaType $case, bool $expected): void
-    {
-        static::assertSame($expected, $case->isImage());
-    }
-
-    /**
-     * Test that isAudio() returns true only for audio types.
-     *
-     * @param  \SineMacula\Http\Enums\MediaType  $case
-     * @param  bool  $expected
-     * @return void
-     */
-    #[DataProvider('isAudioProvider')]
-    public function testIsAudio(MediaType $case, bool $expected): void
-    {
-        static::assertSame($expected, $case->isAudio());
-    }
-
-    /**
-     * Test that isVideo() returns true only for video types.
-     *
-     * @param  \SineMacula\Http\Enums\MediaType  $case
-     * @param  bool  $expected
-     * @return void
-     */
-    #[DataProvider('isVideoProvider')]
-    public function testIsVideo(MediaType $case, bool $expected): void
-    {
-        static::assertSame($expected, $case->isVideo());
-    }
-
-    /**
-     * Test that isFont() returns true only for font types.
-     *
-     * @param  \SineMacula\Http\Enums\MediaType  $case
-     * @param  bool  $expected
-     * @return void
-     */
-    #[DataProvider('isFontProvider')]
-    public function testIsFont(MediaType $case, bool $expected): void
-    {
-        static::assertSame($expected, $case->isFont());
-    }
-
-    /**
      * Test that getExtension() returns the correct extension for each case.
      *
      * @param  \SineMacula\Http\Enums\MediaType  $case
@@ -334,7 +336,7 @@ class MediaTypeTest extends TestCase
     #[DataProvider('extensionProvider')]
     public function testGetExtension(MediaType $case, ?string $expectedExtension): void
     {
-        static::assertSame($expectedExtension, $case->getExtension());
+        self::assertSame($expectedExtension, $case->getExtension());
     }
 
     /**
@@ -344,9 +346,9 @@ class MediaTypeTest extends TestCase
      */
     public function testGetMimeType(): void
     {
-        static::assertSame('application/json', MediaType::APPLICATION_JSON->getMimeType());
-        static::assertSame('text/html', MediaType::TEXT_HTML->getMimeType());
-        static::assertSame('image/png', MediaType::IMAGE_PNG->getMimeType());
+        self::assertSame('application/json', MediaType::APPLICATION_JSON->getMimeType());
+        self::assertSame('text/html', MediaType::TEXT_HTML->getMimeType());
+        self::assertSame('image/png', MediaType::IMAGE_PNG->getMimeType());
     }
 
     /**
@@ -356,10 +358,10 @@ class MediaTypeTest extends TestCase
      */
     public function testWithCharset(): void
     {
-        static::assertSame('text/csv; charset=utf-8', MediaType::TEXT_CSV->withCharset(Charset::UTF_8));
-        static::assertSame('application/json; charset=utf-8', MediaType::APPLICATION_JSON->withCharset(Charset::UTF_8));
-        static::assertSame('text/html; charset=iso-8859-1', MediaType::TEXT_HTML->withCharset(Charset::ISO_8859_1));
-        static::assertSame('text/plain; charset=us-ascii', MediaType::TEXT_PLAIN->withCharset(Charset::ASCII));
+        self::assertSame('text/csv; charset=utf-8', MediaType::TEXT_CSV->withCharset(Charset::UTF_8));
+        self::assertSame('application/json; charset=utf-8', MediaType::APPLICATION_JSON->withCharset(Charset::UTF_8));
+        self::assertSame('text/html; charset=iso-8859-1', MediaType::TEXT_HTML->withCharset(Charset::ISO_8859_1));
+        self::assertSame('text/plain; charset=us-ascii', MediaType::TEXT_PLAIN->withCharset(Charset::ASCII));
     }
 
     /**
@@ -369,6 +371,6 @@ class MediaTypeTest extends TestCase
      */
     public function testTryFromReturnsNullForUnknownValue(): void
     {
-        static::assertNull(MediaType::tryFrom('application/unknown'));
+        self::assertNull(MediaType::tryFrom('application/unknown'));
     }
 }

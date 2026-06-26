@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Tests\Unit\Enums;
 
 use PHPUnit\Framework\Attributes\CoversClass;
@@ -16,7 +18,7 @@ use SineMacula\Http\Enums\HttpHeader;
  * @internal
  */
 #[CoversClass(HttpHeader::class)]
-class HttpHeaderTest extends TestCase
+final class HttpHeaderTest extends TestCase
 {
     /**
      * Test that HttpHeader has the expected number of cases.
@@ -25,7 +27,7 @@ class HttpHeaderTest extends TestCase
      */
     public function testCaseCount(): void
     {
-        static::assertCount(61, HttpHeader::cases());
+        self::assertCount(61, HttpHeader::cases());
     }
 
     /**
@@ -108,7 +110,7 @@ class HttpHeaderTest extends TestCase
     #[DataProvider('backingValueProvider')]
     public function testBackingValues(HttpHeader $case, string $expectedValue): void
     {
-        static::assertSame($expectedValue, $case->value);
+        self::assertSame($expectedValue, $case->value);
     }
 
     /**
@@ -191,7 +193,7 @@ class HttpHeaderTest extends TestCase
     #[DataProvider('isStandardProvider')]
     public function testIsStandard(HttpHeader $case, bool $expected): void
     {
-        static::assertSame($expected, $case->isStandard());
+        self::assertSame($expected, $case->isStandard());
     }
 
     /**
@@ -201,9 +203,9 @@ class HttpHeaderTest extends TestCase
      */
     public function testGetName(): void
     {
-        static::assertSame('Content-Type', HttpHeader::CONTENT_TYPE->getName());
-        static::assertSame('Authorization', HttpHeader::AUTHORIZATION->getName());
-        static::assertSame('X-Request-ID', HttpHeader::X_REQUEST_ID->getName());
+        self::assertSame('Content-Type', HttpHeader::CONTENT_TYPE->getName());
+        self::assertSame('Authorization', HttpHeader::AUTHORIZATION->getName());
+        self::assertSame('X-Request-ID', HttpHeader::X_REQUEST_ID->getName());
     }
 
     /**
@@ -213,6 +215,6 @@ class HttpHeaderTest extends TestCase
      */
     public function testTryFromReturnsNullForUnknownValue(): void
     {
-        static::assertNull(HttpHeader::tryFrom('X-Unknown-Header'));
+        self::assertNull(HttpHeader::tryFrom('X-Unknown-Header'));
     }
 }

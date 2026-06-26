@@ -38,6 +38,15 @@ php = "8.3"
 [smells]
 mode = "comment"
 
+# php_codesniffer 4.x exits with code 3 when it reports findings (slevomat >=
+# 8.29 forces phpcs ^4.0.1). qlty's default success_codes = [0, 1] treats that
+# exit as a hard failure and silently drops every phpcs finding, showing a
+# false green. Accept exit codes 2 and 3 so findings are parsed. This must live
+# in the consumer's qlty.toml - a qlty bug drops a source's exported configs if
+# the block is declared in the shared source.toml.
+[plugins.definitions.php-codesniffer.drivers.lint]
+success_codes = [0, 1, 2, 3]
+
 [[source]]
 name = "default"
 default = true

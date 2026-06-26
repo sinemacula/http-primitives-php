@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Tests\Unit\Enums;
 
 use PHPUnit\Framework\Attributes\CoversClass;
@@ -16,8 +18,18 @@ use SineMacula\Http\Enums\Charset;
  * @internal
  */
 #[CoversClass(Charset::class)]
-class CharsetTest extends TestCase
+final class CharsetTest extends TestCase
 {
+    /**
+     * Test the total number of enum cases.
+     *
+     * @return void
+     */
+    public function testCaseCount(): void
+    {
+        self::assertCount(20, Charset::cases());
+    }
+
     /**
      * Provide each charset case with its expected backing value.
      *
@@ -48,16 +60,6 @@ class CharsetTest extends TestCase
     }
 
     /**
-     * Test the total number of enum cases.
-     *
-     * @return void
-     */
-    public function testCaseCount(): void
-    {
-        static::assertCount(20, Charset::cases());
-    }
-
-    /**
      * Test that each case has the correct backing value.
      *
      * @param  \SineMacula\Http\Enums\Charset  $case
@@ -67,7 +69,7 @@ class CharsetTest extends TestCase
     #[DataProvider('backingValueProvider')]
     public function testBackingValues(Charset $case, string $expectedValue): void
     {
-        static::assertSame($expectedValue, $case->value);
+        self::assertSame($expectedValue, $case->value);
     }
 
     /**
@@ -77,9 +79,9 @@ class CharsetTest extends TestCase
      */
     public function testGetEncoding(): void
     {
-        static::assertSame('utf-8', Charset::UTF_8->getEncoding());
-        static::assertSame('iso-8859-1', Charset::ISO_8859_1->getEncoding());
-        static::assertSame('shift_jis', Charset::SHIFT_JIS->getEncoding());
+        self::assertSame('utf-8', Charset::UTF_8->getEncoding());
+        self::assertSame('iso-8859-1', Charset::ISO_8859_1->getEncoding());
+        self::assertSame('shift_jis', Charset::SHIFT_JIS->getEncoding());
     }
 
     /**
@@ -89,6 +91,6 @@ class CharsetTest extends TestCase
      */
     public function testTryFromReturnsNullForUnknownValue(): void
     {
-        static::assertNull(Charset::tryFrom('unknown-charset'));
+        self::assertNull(Charset::tryFrom('unknown-charset'));
     }
 }
