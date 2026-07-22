@@ -105,11 +105,7 @@ enum HttpStatus: int
     case NOT_EXTENDED                    = 510;
     case NETWORK_AUTHENTICATION_REQUIRED = 511;
 
-    /**
-     * The IANA/RFC 9110 reason phrases keyed by case name.
-     *
-     * @var array<string, string>
-     */
+    /** @var array<string, string> The IANA/RFC 9110 reason phrases keyed by case name. */
     private const array REASON_PHRASES = [
         'CONTINUE'                        => 'Continue',
         'SWITCHING_PROTOCOLS'             => 'Switching Protocols',

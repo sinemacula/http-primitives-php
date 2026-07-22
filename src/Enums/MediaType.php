@@ -97,11 +97,7 @@ enum MediaType: string
     case FONT_TTF   = 'font/ttf';
     case FONT_OTF   = 'font/otf';
 
-    /**
-     * The common file extensions keyed by case name (null when none applies).
-     *
-     * @var array<string, string|null>
-     */
+    /** @var array<string, string|null> The common file extensions keyed by case name (null when none applies). */
     private const array EXTENSIONS = [
         'APPLICATION_JSON'            => 'json',
         'APPLICATION_XML'             => 'xml',
