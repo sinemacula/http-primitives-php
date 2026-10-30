@@ -3,11 +3,13 @@
 <div align="center">
 
 [![Latest Stable Version](https://img.shields.io/packagist/v/sinemacula/http-primitives-php.svg)](https://packagist.org/packages/sinemacula/http-primitives-php)
+[![PHP Version](https://img.shields.io/packagist/dependency-v/sinemacula/http-primitives-php/php.svg)](https://packagist.org/packages/sinemacula/http-primitives-php)
 [![Build Status](https://github.com/sinemacula/http-primitives-php/actions/workflows/tests.yml/badge.svg?branch=master)](https://github.com/sinemacula/http-primitives-php/actions/workflows/tests.yml)
 [![Quality Gates](https://github.com/sinemacula/http-primitives-php/actions/workflows/quality-gates.yml/badge.svg?branch=master)](https://github.com/sinemacula/http-primitives-php/actions/workflows/quality-gates.yml)
 [![Maintainability](https://qlty.sh/gh/sinemacula/projects/http-primitives-php/maintainability.svg)](https://qlty.sh/gh/sinemacula/projects/http-primitives-php)
 [![Code Coverage](https://qlty.sh/gh/sinemacula/projects/http-primitives-php/coverage.svg)](https://qlty.sh/gh/sinemacula/projects/http-primitives-php)
 [![Total Downloads](https://img.shields.io/packagist/dt/sinemacula/http-primitives-php.svg)](https://packagist.org/packages/sinemacula/http-primitives-php)
+[![License](https://img.shields.io/github/license/sinemacula/http-primitives-php.svg)](LICENSE)
 
 </div>
 
