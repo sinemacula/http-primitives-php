@@ -47,7 +47,7 @@ enum HttpMethod: string
     {
         return match ($this) {
             self::GET, self::HEAD, self::OPTIONS, self::TRACE => true,
-            default => false,
+            default                                           => false,
         };
     }
 
@@ -60,7 +60,7 @@ enum HttpMethod: string
     {
         return match ($this) {
             self::GET, self::HEAD, self::PUT, self::DELETE, self::OPTIONS, self::TRACE => true,
-            default => false,
+            default                                                                    => false,
         };
     }
 }
