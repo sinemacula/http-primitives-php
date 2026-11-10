@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/), and this project adheres
 to [Semantic Versioning](https://semver.org/).
 
+## [2.0.3](https://github.com/sinemacula/http-primitives-php/compare/v2.0.2...v2.0.3) (2026-11-10)
+
+
+### Bug Fixes
+
+* clear the qlty findings and drop configuration the shared source provides ([#69](https://github.com/sinemacula/http-primitives-php/issues/69)) ([589f266](https://github.com/sinemacula/http-primitives-php/commit/589f26681f32b08430f8462070fb56f88671450f))
+
 ## [2.0.2](https://github.com/sinemacula/http-primitives-php/compare/v2.0.1...v2.0.2) (2026-10-20)
 
 
